@@ -1,0 +1,30 @@
+body {
+  padding-bottom: 2rem;
+}
+
+
+.navbar-brand {
+  font-size: 50px;
+  margin-left: 10px;
+}
+
+nav {
+  border: 1px solid black;
+  padding:10px
+}
+
+.home {
+  text-decoration: none;
+  padding: 0.5rem;
+  border: 1px solid #333333;
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height:2rem;
+  
+}
