@@ -1,4 +1,4 @@
-get-api-js
+
 // gets NBA data from localStorage
 function readNBAFromStorage() {
   let stringData = localStorage.getItem('NBA');
@@ -63,7 +63,7 @@ submitBtn.addEventListener('click', function (event) {
     if (username.value == '' || password.value == '') {
         alert('please fill all fields before continuing')
 
-    } else { window.location.replace("./myteams.html"); 
+    } else { window.location.replace("./homepage.html"); 
     logins.push(logins)
     localStorage.setItem('logininfo', JSON.stringify(logins));
    
@@ -72,4 +72,4 @@ submitBtn.addEventListener('click', function (event) {
    
 });
 
- main
+
