@@ -29,7 +29,8 @@ function getApi() {
       console.log(data);
       localStorage.setItem('NBA', JSON.stringify(data))
     })
-    
+
+    // catches error if occurs and alerts user that something when wrong
     .catch(function (error) {
       console.log(error);
       alert('An error has occured.');
