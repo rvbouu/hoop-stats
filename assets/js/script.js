@@ -1,4 +1,5 @@
 
+
 // gets NBA data from localStorage
 function readNBAFromStorage() {
   let stringData = localStorage.getItem('NBA');
@@ -39,37 +40,84 @@ function getApi() {
 }
 getApi();
 
-const submitBtn= document.querySelector('#submit');
+const submitBtn = document.querySelector('#submit');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
+const password2 = document.getElementById('password2');
+const form = document.getElementById('login')
+// global variable for all users who have login credentials
+let allUsers = []
+
+let modal= document.getElementById('myModal')
+let btn= document.getElementById('myBtn')
+var span = document.getElementsByClassName("close")[0];
 
 
 
-let logininfo = localStorage.getItem('logininfo')
-let login = JSON.parse(logininfo) || []
-submitBtn.addEventListener('click', function (event) {
-    event.preventDefault();
-    const logins = {
-        username: username.value,
-        password: password.value,
-        
-
-    };
-    
+btn.onclick = function() {
+    modal.style.display = "block";
+  }
 
 
+if (!localStorage.getItem("logininfo")) localStorage.setItem("logininfo", JSON.stringify([]));
 
+//var arr = JSON.parse(localStorage.getItem("logininfo"));
+//console.log(arr)
 
-    if (username.value == '' || password.value == '') {
-        alert('please fill all fields before continuing')
-
-    } else { window.location.replace("./homepage.html"); 
-    logins.push(logins)
-    localStorage.setItem('logininfo', JSON.stringify(logins));
-   
+function readcred(){
+  let stringdata = localStorage.getItem('logininfo')
+  allUsers = JSON.parse(stringdata) || []
+  console.log(allUsers)
 }
 
-   
-});
+function saveNewUser(logininfo){
+  allUsers.push(logininfo)
+  savecred()
+}
+
+function savecred(){
+  localStorage.setItem('logininfo', JSON.stringify(allUsers))
+} 
+
+// let logininfo = localStorage.getItem('logininfo')
+// let login = JSON.parse(logininfo) || []
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  console.log("ok")
+  const logins = {
+    username: username.value,
+    password: password.value,
 
 
+  }
+
+  
+  //logininfo.push(logins)
+  //localStorage.setItem("logininfo", JSON.stringify(logins)) 
+  //login.push(logins);
+  //localStorage.setItem("logininfo", JSON.stringify(login))
+
+
+
+
+  if (username.value == '' || password.value == '' || password2.value == '') {
+    return alert('please fill all fields before continuing')
+  } else if (password.value != password2.value) {
+    return alert('Passwords do not match')
+  } else {
+    console.log("ok")
+    //window.location.replace("./homepage.html")
+    saveNewUser(logins)
+    const found = allUsers.find( user => user.username === username.value && user.password ===  password.value )
+    console.log(found)
+  }
+
+
+})
+
+
+//else { window.location.replace("./homepage.html"); 
+
+
+// Every time the page loads, we want to get all users with login credentials
+readcred();
