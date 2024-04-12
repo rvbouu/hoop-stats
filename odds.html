@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odds</title>
+  <!--Bootstrap link-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <!--jquery UI link-->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <!-- local stylesheets -->
+  <link rel="stylesheet" href="./assets/css/odds.css" />
+  <link rel="stylesheet" href='./assets/css/style.css' />
+</head>
+
+<body id="bootstrap-overrides">
+  <header class="top-page">
+    <h1>Hoop Stats: Odds</h1>
+    <div>
+      <a href="./homepage.html">Home</a>
+      <a href="./all-teams.html">All Teams</a>
+      <a href="./about.html">About Us</a>
+      </nav>
+  </header>
+  <main>
+    <section class="teams row m-2">
+      <!-- where team cards are going to be dynamically added and dragging from -->
+    </section>
+    <div class="dragndrop">
+      <aside class="team-one">
+        <!-- where team one stats are going to be dynamically added -->
+      </aside>
+
+      <section class="compare">
+        <div id="compare-team1">
+          <!-- where team one will get dragged to -->
+        </div>
+        <div id="compare-team2">
+          <!-- where team two will get dragged to -->
+        </div>
+        <div id="winner">
+
+        </div>
+      </section>
+
+      <aside class="team-two">
+        <!-- where team two stats are going to be dynamically added -->
+      </aside>
+    </div>
+  </main>
+
+  <!--bootstrap link-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <!--jquery link-->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!--jquery UI link-->
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+  <!-- local javascripts -->
+  <script type="text/javascript" src="./assets/js/odds.js"></script>
+  <script type="text/javascript" src="./assets/js/script.js"></script>
+</body>
+
+</html>
