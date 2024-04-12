@@ -18,3 +18,18 @@ function saveNBAToStorage(nba) {
   let savedNBA = JSON.stringify(nba);
   localStorage.setItem('NBA', savedNBA);
 }
+
+function createTeamCards() {
+  let savedData = readNBAFromStorage();
+  console.log(savedData);
+  let nbaTeams = savedData.sports[0].leagues[0].teams;
+  console.log(nbaTeams);
+
+  for(i = 0; i < nbaTeams.length; i++){
+    const teamsSect = $('.teams'); // append img to here
+    const img = $('<img>');
+    img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`);
+    img.appendTo(teamsSect);
+  }
+}
+createTeamCards();
