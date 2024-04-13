@@ -1,9 +1,91 @@
-*{
+:root{
+  --orange: #e75719;
+  --darkorange: #9c380d;
+  --blue: #241aa5;
+  --darkblue: #201d43;
+  --blueblack: #08052f;
+  --silver: #201d43;
+
+
+}
+
+/* *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+} */
+
+body{
+  width: 100vw;
+  height: 100vh;
+}
+
+main{
+  width: 100%;
+  height: 100%;
 }
 
 #team-name{
   font-size: 14px;
+}
+
+.logos{
+  height: 98px;
+  width: 98px;
+}
+
+.dragndrop{
+  border: 1px solid red;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.team-one{
+  border: 1px solid blue;
+  height: 100%;
+  width: 100%;
+}
+
+.compare{
+  border: 1px solid aqua;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.block{
+  border: 1px solid palevioletred;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#compare-team1{
+  border: 1px solid red;
+  height: 100%;
+  width: 100%;
+
+}
+
+#compare-team2{
+  border: 1px solid blue;
+  height: 100%;
+  width: 100%;
+}
+
+#winner{
+  border: 1px solid black;
+  /* height: 100%; */
+  width: 100%;
+}
+
+.team-two{
+  border: 1px solid red;
+  height: 100%;
+  width: 100%;
 }
