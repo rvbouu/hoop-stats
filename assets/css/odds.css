@@ -5,62 +5,64 @@
   --darkblue: #201d43;
   --blueblack: #08052f;
   --silver: #201d43;
-
-
 }
 
-/* *{
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-} */
+}
 
-body{
-  width: 100vw;
-  height: 100vh;
+body.odds{
+  height: 100%;
 }
 
 main{
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+}  
+
+#teams{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 #team-name{
-  font-size: 14px;
+  font-size: 12px;
+  height: 100%;
 }
 
 .logos{
-  height: 98px;
-  width: 98px;
+  height: 50px;
+  width: 50px;
 }
 
 .dragndrop{
-  border: 1px solid red;
   height: 100%;
-  width: 100%;
+  border: 1px solid red;
   display: flex;
   flex-direction: row;
+
 }
 
 .team-one{
   border: 1px solid blue;
-  height: 100%;
-  width: 100%;
+  width: 30%  
 }
 
 .compare{
   border: 1px solid aqua;
-  height: 100%;
-  width: 100%;
+  height: 35rem;
   display: flex;
   flex-direction: column;
-  flex-grow: 2;
+  width: 40%;
 }
 
 .block{
   border: 1px solid palevioletred;
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: row;
 }
@@ -68,24 +70,22 @@ main{
 #compare-team1{
   border: 1px solid red;
   height: 100%;
-  width: 100%;
-
+  width: 50%;
 }
 
 #compare-team2{
   border: 1px solid blue;
   height: 100%;
-  width: 100%;
+  width: 50%;
 }
 
 #winner{
   border: 1px solid black;
-  /* height: 100%; */
-  width: 100%;
+  height: 20%;
 }
 
 .team-two{
   border: 1px solid red;
   height: 100%;
-  width: 100%;
+  width: 30%;
 }

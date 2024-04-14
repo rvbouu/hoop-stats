@@ -34,7 +34,7 @@ function saveTeamsToStorage(teamArray) {
 }
 
 function getTeamApi() {
-  let teamArray = readTeamsFromStorage();
+  let teamArray = [];
   let savedData = readNBAFromStorage();
   let teams = savedData.sports[0].leagues[0].teams;
   localStorage.setItem('NBA Teams', JSON.stringify(teams))
@@ -64,16 +64,10 @@ function getTeamApi() {
       })
   }
 }
-getTeamApi();
-
 
 function createTeamCard(team) {
-  // let teams = JSON.parse(localStorage.getItem('teamArray'))
-  // console.log(teams)
-  // for (i = 0; i < teams.length; i++) {
-  // const teamsSect = $('.teams'); // append img to here
   const teamCard = $('<div>');
-  teamCard.addClass('team-logo col text-center draggable');
+  teamCard.addClass('team-logo col text-center draggable').attr('data-win-id', team.id);
 
   const pTag = $('<p>');
   pTag.text(team.name).addClass('fw-bold text-center').attr('id', 'team-name');
@@ -82,17 +76,15 @@ function createTeamCard(team) {
   img.attr('src', team.logo).attr('alt', `${team.name} logo`).addClass('logos');
   img.attr('data-win-id', team.id);
   teamCard.append(img, pTag);
-  // teamCard.appendTo(teamsSect);
   return teamCard;
-  // getWinPercent()
 }
 // }
 
 
 function renderTeam() {
-  const teams = JSON.parse(localStorage.getItem('teamArray'));
+  const teams = readTeamsFromStorage('teamArray');
 
-  const teamsSect = $('.teams');
+  const teamsSect = $('#teams');
   teamsSect.empty();
   const compare1 = $('#compare-team1');
   compare1.empty();
@@ -130,7 +122,7 @@ function renderTeam() {
 }
 
 function handleDrop(event, ui) {
-  const teams = JSON.parse(localStorage.getItem('teamArray'));
+  const teams = readTeamsFromStorage('teamArray')
   const teamId = ui.draggable[0].dataset.winId;
   const newStatus = event.target.id;
 
@@ -139,20 +131,16 @@ function handleDrop(event, ui) {
       team.status = newStatus
     }
   }
+  console.log('drop')
 }
 
 // getTeamStats();
 
 $(document).ready(function () {
-  // renders tasks if there is any
-  // createTeamCard();
-  // renderTeam();
-  // allows due date month/year to be changed with drop down menus
-  $('#taskDueDate').datepicker({
-    changeMonth: true,
-    changeYear: true,
-  });
 
+  // renders tasks if there is any
+  getTeamApi();
+  // allows due date month/year to be changed with drop down menus
   // makes lanes droppable
   $('.lane').droppable({
     accept: '.draggable',
