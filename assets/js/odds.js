@@ -74,11 +74,29 @@ function createTeamCard(team) {
 
   const img = $('<img>');
   img.attr('src', team.logo).attr('alt', `${team.name} logo`).addClass('logos');
-  img.attr('data-win-id', team.id);
   teamCard.append(img, pTag);
   return teamCard;
 }
-// }
+
+function createStats(team) {
+  const stats = $('<div>');
+  stats.addClass('team-stats col text-center');
+
+  const title = $('<h3>');
+  title.text(`${team.name} Stats`).addClass('border-bottom border-dark mb-3');
+
+  const overall = $('<p>');
+  overall.text(`Overall Record: ${team.overall}`);
+
+  const home = $('<p>');
+  home.text(`Home Record: ${team.home}`);
+
+  const away = $('<p>');
+  away.text(`Away Record: ${team.away}`);
+
+  stats.append(title, overall, home, away);
+  return stats;
+}
 
 
 function renderTeam() {
@@ -105,6 +123,7 @@ function renderTeam() {
     opacity: 0.7,
     zIndex: 100,
 
+
     // creates clone of card being dragged (visual only)
     helper: function (e) {
       // checks whether target of drag is card itself or child element. If card itself, clone it, else find parent card that is draggable and clone that.
@@ -112,38 +131,64 @@ function renderTeam() {
         ? $(e.target)
         : $(e.target).closest('.ui-draggable');
       // returns clone with same width as original card
-      return original
-        .clone().css({
-          width: original.outerWidth(),
-        })
+      return original.clone().css({
+        width: original.outerWidth(),
+      })
     },
-
   });
 }
 
+
 function handleDrop(event, ui) {
-  const teams = readTeamsFromStorage('teamArray')
-  const teamId = ui.draggable[0].dataset.winId;
+  const teams = readTeamsFromStorage();
+  const winId = ui.draggable[0].dataset.winId;
   const newStatus = event.target.id;
+  const teamOneStats = $('.team-one');
+  const teamTwoStats = $('.team-two');
+  const winner = $('#winner');
+  let team1 = {};
+  let team2 = {};
+  teamOneStats.empty();
+  teamTwoStats.empty();
+  winner.empty();
 
   for (let team of teams) {
-    if (team.id === teamId) {
-      team.status = newStatus
+    if (team.id == winId) {
+      team.status = newStatus;
+    }
+    if (team.status == 'compare-team1') {
+      team1 = team;
+      teamOneStats.append(createStats(team));
+    }
+    if (team.status == 'compare-team2') {
+      team2 = team;
+      teamTwoStats.append(createStats(team))
     }
   }
-  console.log('drop')
+  if (team1.winPerc < team2.winPerc){
+    winner.text(`${team2.name} wins`);
+  }else if(team2.winPerc < team1.winPerc){
+    winner.text(`${team1.name} wins`);
+  }else if(team1.winPerc == team2.winPerc){
+    winner.text(`It's a tie`);
+  }
+  console.log('drop');
+  saveTeamsToStorage(teams);
+  renderTeam();
 }
 
-// getTeamStats();
-
 $(document).ready(function () {
-
   // renders tasks if there is any
   getTeamApi();
-  // allows due date month/year to be changed with drop down menus
+
+
   // makes lanes droppable
   $('.lane').droppable({
     accept: '.draggable',
     drop: handleDrop,
   });
 });
+
+
+
+
