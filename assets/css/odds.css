@@ -1,9 +1,141 @@
+:root{
+  --orange: #e75719;
+  --darkorange: #9c380d;
+  --blue: #241aa5;
+  --darkblue: #201d43;
+  --blueblack: #08052f;
+  --silver: #d0d0d0;
+}
+
 *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+body.odds{
+  height: 100%;
+  color: var(--silver);
+  background-color: var(--darkblue);
+}
+
+header.top-page{
+  background-color: var(--darkorange);
+  color: var(--blueblack);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: var(--blueblack);
+  font-size: 1.5rem;
+  padding: 15px;
+  margin: 15px;
+}
+
+a:hover{
+  background-color: var(--orange);
+  width: 15px;
+  padding: 15px;
+}
+
+.top-page h1{
+  font-weight:600;
+  font-size: 4.5rem;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+}  
+
+#teams{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 #team-name{
-  font-size: 14px;
+  font-size: 12px;
+  height: 100%;
+}
+
+.team-logo{
+  margin: 25px;
+}
+
+.team-logo:hover{
+  cursor: grab;
+}
+
+.team-logo:active{
+  cursor: grabbing;
+}
+
+.logos{
+  height: 50px;
+  width: 50px;
+}
+
+#compare-team1 .team-logo .logos{
+  height: 200px;
+  width: 200px;
+}
+
+#compare-team1 .team-logo .logos, #compare-team2 .team-logo .logos{
+  height: 200px;
+  width: 200px;  
+}
+
+.dragndrop{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.team-one{
+  width: 20%  
+}
+
+.compare{
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.block{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#compare-team1, #compare-team2{
+  border: 1px solid red;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#compare-team1 #team-name, #compare-team2 #team-name{
+  font-size: 3rem;
+}
+
+#winner{
+  height: 20%;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.team-two{
+  height: 100%;
+  width: 20%;
 }
