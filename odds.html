@@ -24,6 +24,7 @@
       <a href="./about.html">About Us</a>
     </nav>
   </header>
+  <h3 id="element"></h3>
   <main class="lane">
     <section class="teams" id="teams">
       <!-- where team cards are going to be dynamically added and dragging from -->
@@ -34,7 +35,7 @@
       </aside>
 
       <section class="compare">
-        <h3 id="element"></h3>
+        
         <button id="reset">Reset</button>
         <div class="block">
           <div class='lane' id="compare-team1">
@@ -63,7 +64,7 @@
   <!-- Setup and start animation! -->
   <script>
     var typed = new Typed('#element', {
-      strings: ['Welcome to Hoop Stats.', `Drag a team into each box to see who'll win!`],
+      strings: ['Welcome to Hoop Stats.', `Drag a team into each box to see who's more likely to win! `],
       typeSpeed: 60,
       backSpeed: 50,
       startDelay: 1000,
