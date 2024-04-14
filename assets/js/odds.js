@@ -177,6 +177,10 @@ function handleDrop(event, ui) {
   renderTeam();
 }
 
+$('#reset').on('click', function(e){
+  document.location.href = './odds.html';
+})
+
 $(document).ready(function () {
   // renders tasks if there is any
   getTeamApi();

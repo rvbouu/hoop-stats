@@ -29,6 +29,20 @@ header.top-page{
   padding-right: 10px;
 }
 
+#element{
+  text-align: center;
+  height: 4rem;
+  font-weight: 650;
+}
+
+#reset{
+  background-color: var(--orange);
+  color: var(--blueblack);
+  width: 50%;
+  margin: 0 auto;
+  cursor: default;
+}
+
 a{
   text-decoration: none;
   color: var(--blueblack);
