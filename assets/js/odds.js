@@ -20,39 +20,45 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 }
 
-// gets NBA data from localStorage
+// gets teamArray data from localStorage
 function readTeamsFromStorage() {
   let stringData = localStorage.getItem('teamArray');
   let teamArray = JSON.parse(stringData) || [];
   return teamArray;
 }
 
-// saves NBA data to localStorage
+// saves teamArray data to localStorage
 function saveTeamsToStorage(teamArray) {
   let savedTeams = JSON.stringify(teamArray);
   localStorage.setItem('teamArray', savedTeams);
 }
 
+// uses data from sript.js fetch to get individual team stats and saves them to teamArray
 function getTeamApi() {
   let teamArray = [];
   let savedData = readNBAFromStorage();
+  // targets team array with NBA object in localStorage
   let teams = savedData.sports[0].leagues[0].teams;
+  // saves teams array to localStorage under NBA Teams
   localStorage.setItem('NBA Teams', JSON.stringify(teams))
-  console.log(teams)
-  count = 0;
-  for (i = 0; i < teams.length; i++) {
-    count++
+  // console.log(teams)
+  for (let i = 0; i < teams.length; i++) {
+    // fetching data for individual teams
     const requestURL = `http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${teams[i].team.abbreviation}`;
     fetch(requestURL)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
+        // creating object for individual teams
+        const stats = data.team.record.items[0].stats;
+        // getting specific data from fetched data and putting into an object
+        // each team has their own object
         let team = {
           id: data.team.abbreviation,
           name: data.team.displayName,
           logo: data.team.logos[0].href,
-          winPerc: data.team.record.items[0].stats[9].value,
+          winPerc: data.team.record.items[0].stats[stats.length-2].value,
           overall: data.team.record.items[0].summary,
           home: data.team.record.items[1].summary,
           away: data.team.record.items[2].summary,
@@ -65,6 +71,7 @@ function getTeamApi() {
   }
 }
 
+// creates team logo cards and returns it
 function createTeamCard(team) {
   const teamCard = $('<div>');
   teamCard.addClass('team-logo col text-center draggable').attr('data-win-id', team.id);
@@ -78,12 +85,13 @@ function createTeamCard(team) {
   return teamCard;
 }
 
+// creates stats to be appended to asides
 function createStats(team) {
   const stats = $('<div>');
   stats.addClass('team-stats col text-center');
 
   const title = $('<h3>');
-  title.text(`${team.name} Stats`).addClass('border-bottom border-dark mb-3');
+  title.text(`${team.name} Stats`).addClass('border-bottom border-light mb-3');
 
   const overall = $('<p>');
   overall.text(`Overall Record: ${team.overall}`);
@@ -98,7 +106,7 @@ function createStats(team) {
   return stats;
 }
 
-
+// renders team logo cards and makes them draggable
 function renderTeam() {
   const teams = readTeamsFromStorage('teamArray');
 
@@ -109,6 +117,7 @@ function renderTeam() {
   const compare2 = $('#compare-team2');
   compare2.empty()
 
+  // for loop to change status of card when dragged to certain box
   for (let team of teams) {
     if (team.status == 'teams') {
       createTeamCard(team).appendTo(teamsSect);
@@ -118,7 +127,7 @@ function renderTeam() {
       createTeamCard(team).appendTo(compare2)
     }
   }
-
+// makes cards draggable
   $('.draggable').draggable({
     opacity: 0.7,
     zIndex: 100,
@@ -138,7 +147,7 @@ function renderTeam() {
   });
 }
 
-
+// handles drop of cards
 function handleDrop(event, ui) {
   const teams = readTeamsFromStorage();
   const winId = ui.draggable[0].dataset.winId;
@@ -146,16 +155,27 @@ function handleDrop(event, ui) {
   const teamOneStats = $('.team-one');
   const teamTwoStats = $('.team-two');
   const winner = $('#winner');
+  const compare1 = $('#compare-team1');
+  const compare2 = $('#compare-team2');
   let team1 = {};
   let team2 = {};
   teamOneStats.empty();
   teamTwoStats.empty();
   winner.empty();
 
+  // if compare boxes are full, sends alert to user to reset page
+  // ??? why alert sending twice?
+  if(compare1.html() != '' && compare2.html() != ''){
+    alert('Please reset the page.');
+    return false;
+  }
+
   for (let team of teams) {
+    // updates status of card to where card is dragged to
     if (team.id == winId) {
       team.status = newStatus;
     }
+    // if statements to populate stats when team is dragged to compare boxes
     if (team.status == 'compare-team1') {
       team1 = team;
       teamOneStats.append(createStats(team));
@@ -165,26 +185,29 @@ function handleDrop(event, ui) {
       teamTwoStats.append(createStats(team))
     }
   }
+
+  // if statement to compare and show who would win between the two teams being compared
   if (team1.winPerc < team2.winPerc){
-    winner.text(`${team2.name} wins`);
+    winner.text(`${team2.name} ➟ more likely to win.`);
   }else if(team2.winPerc < team1.winPerc){
-    winner.text(`${team1.name} wins`);
+    winner.text(`${team1.name} ➟ more likely to win.`);
   }else if(team1.winPerc == team2.winPerc){
-    winner.text(`It's a tie`);
+    winner.text(`It'd be a tie.`);
   }
   console.log('drop');
   saveTeamsToStorage(teams);
   renderTeam();
 }
 
+// reset button
 $('#reset').on('click', function(e){
   document.location.href = './odds.html';
-})
+});
 
+// calls functions right when the page is ready and makes lanes droppable
 $(document).ready(function () {
   // renders tasks if there is any
   getTeamApi();
-
 
   // makes lanes droppable
   $('.lane').droppable({
