@@ -12,18 +12,21 @@ function saveNBAToStorage(nba) {
 };
 
 function allTeams() {
-  const allTeams = $('<main>');
-  allTeams.addClass('col text-center').attr('id', 'allTeams');
-  const div = $('<div>');
-  div.addClass('fw-bold text-center').attr('id', 'team').appendTo(allTeams);
-  const input = $('<input>');
-  input.addClass('form-check-input').attr('id', 'check').appendTo(div);
-  const logo = $('<label>');
-  logo.addClass('form-check-label').text().attr('href', '').appendTo(div);
-  const img = $('<img>');
-  img.attr('src',team.logo).attr('alt', `${teams.team.logo} logo`).addClass('logos');
-  teamCard.append(img, div);
+  const allTeams = $('#allTeams');
+  let savedData = readNBAFromStorage();
+  let teams = savedData.sports[0].leagues[0].teams;
+  localStorage.setItem('NBA Teams', JSON.stringify(teams))
 
+  for (let i = 0; i < teams.length; i++) {
+    const object = teams[i];
+    const div = $('<div>');
+    div.addClass('fw-bold text-center').attr('id', 'team').appendTo(allTeams);
+    const aTag = $('<a>');
+    aTag.attr('href', `${object.team.links[0].href}`).appendTo(div);
+    const img = $('<img>');
+    img.attr('src', object.team.logos[0].href).attr('alt', `${object.team.displayName} logo`).addClass('logos').appendTo(aTag);
+    allTeams.append(div);
+  }
 
   return allTeams;
 }
