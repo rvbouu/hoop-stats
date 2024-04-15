@@ -15,29 +15,29 @@
 <body>
   <header>
     <h1>Hoop Stats</h1>
-    <p>If you already have an account, click <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formModal">Click Here to Login</button></p>
+    <p>If you already have an account <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formModal">Click Here to Login</button></p>
     <div class="modal fade" tabindex="-1" id="formModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Login</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> X </button>
           </div>
           <form class="row m-4">
-            <!--task title input-->
+            <!--login username-->
             <div class="col-12 mb-4">
-              <label for="title" class="form-label">Username</label>
-              <input type="text" class="form-control" id="name" />
+              <label for="login-username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="login-username" />
             </div>
-            <!-- task due date input w/ jquery UI datepicker -->
+            <!-- login password -->
             <div class="col-12 mb-4">
-              <label for="dueDate" class="form-label">Password</label>
-              <input autocomplete="off" type="text" class="form-control" id="taskDueDate" />
+              <label for="login-password" class="form-label">Password</label>
+              <input autocomplete="off" type="text" class="form-control" id="login-password" />
             </div>
           </form>
-          <!-- add task button -->
+          <!-- login button -->
           <div class="mb-4 d-flex justify-content-center">
-            <button type="button" class="btn btn-success add-task-btn">
+            <button type="button" class="btn btn-dark login-btn">
               Login
             </button>
           </div>
