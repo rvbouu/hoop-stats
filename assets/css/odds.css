@@ -43,7 +43,7 @@ header.top-page{
   cursor: default;
 }
 
-a{
+.navbar a{
   text-decoration: none;
   color: var(--blueblack);
   font-size: 1.5rem;
