@@ -39,13 +39,6 @@ aside {
   width: 200px;
 }
 
-footer {
-  position: absolute;
-  bottom:0;
-  left: 0;
-  z-index: 10;
-}
-
 .rando {
   border: 3px solid green;
   justify-content: space-between;
