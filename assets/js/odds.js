@@ -37,19 +37,23 @@ function saveTeamsToStorage(teamArray) {
 function getTeamApi() {
   let teamArray = [];
   let savedData = readNBAFromStorage();
+  // targets team array with NBA object in localStorage
   let teams = savedData.sports[0].leagues[0].teams;
+  // saves teams array to localStorage under NBA Teams
   localStorage.setItem('NBA Teams', JSON.stringify(teams))
-  console.log(teams)
-  count = 0;
-  for (i = 0; i < teams.length; i++) {
-    count++
+  // console.log(teams)
+  for (let i = 0; i < teams.length; i++) {
+    // fetching data for individual teams
     const requestURL = `http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${teams[i].team.abbreviation}`;
     fetch(requestURL)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
+        // creating object for individual teams
         const stats = data.team.record.items[0].stats;
+        // getting specific data from fetched data and putting into an object
+        // each team has their own object
         let team = {
           id: data.team.abbreviation,
           name: data.team.displayName,
@@ -113,6 +117,7 @@ function renderTeam() {
   const compare2 = $('#compare-team2');
   compare2.empty()
 
+  // for loop to change status of card when dragged to certain box
   for (let team of teams) {
     if (team.status == 'teams') {
       createTeamCard(team).appendTo(teamsSect);
@@ -122,7 +127,7 @@ function renderTeam() {
       createTeamCard(team).appendTo(compare2)
     }
   }
-
+// makes cards draggable
   $('.draggable').draggable({
     opacity: 0.7,
     zIndex: 100,
@@ -158,15 +163,19 @@ function handleDrop(event, ui) {
   teamTwoStats.empty();
   winner.empty();
 
+  // if compare boxes are full, sends alert to user to reset page
+  // ??? why alert sending twice?
   if(compare1.html() != '' && compare2.html() != ''){
-    // alert('Please reset the page.')
+    alert('Please reset the page.');
     return false;
   }
 
   for (let team of teams) {
+    // updates status of card to where card is dragged to
     if (team.id == winId) {
       team.status = newStatus;
     }
+    // if statements to populate stats when team is dragged to compare boxes
     if (team.status == 'compare-team1') {
       team1 = team;
       teamOneStats.append(createStats(team));
@@ -176,6 +185,8 @@ function handleDrop(event, ui) {
       teamTwoStats.append(createStats(team))
     }
   }
+
+  // if statement to compare and show who would win between the two teams being compared
   if (team1.winPerc < team2.winPerc){
     winner.text(`${team2.name} ➟ more likely to win.`);
   }else if(team2.winPerc < team1.winPerc){
