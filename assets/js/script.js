@@ -13,6 +13,31 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 }
 
+
+
+
+
+/*function chooseTeams(){
+  let apiInfo= readNBAFromSorage()
+  let teams= apiInfo.sports[0].leagues[0].teams
+
+  for(i=0; i<teams.length; i++){
+    const displayTeams= $('<.teams');
+    const modalDisplay= $('<div>')
+    modalDisplay.addClass('team-logo col text-center');
+
+
+    const  pTag= $('<p>');
+    pTag.text(teams[i].team.displayName)
+
+
+
+  }
+
+}
+chooseTeams() */
+
+
 // gets NBA data from api and saves it to localStorage
 function getApi() {
   // URL where we're requesting data from - ESPN NBA
@@ -40,6 +65,62 @@ function getApi() {
 }
 getApi();
 
+
+
+
+
+function teamChoices() {
+  let savedData = readNBAFromStorage();
+  let nbaTeams = savedData.sports[0].leagues[0].teams;
+ 
+  for(i=0; i<nbaTeams.length; i++){
+    const teamSect = $('.teams');
+    const mainDiv = $('<div>');
+    mainDiv.addClass('team-logo col text-center');
+    const pTag = $('<p>');
+    pTag.text(nbaTeams[i].team.displayName).addClass('fw-bold text-center').attr('id','team-name');
+
+    const img =$('<img>');
+    img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`).attr('style','width:75px;height:75px;');
+    mainDiv.append(img, pTag);
+    mainDiv.appendTo(teamSect);
+ 
+  }
+}
+
+let chosenteams= []
+
+if (!localStorage.getItem("teams")) localStorage.setItem("teams", JSON.stringify([]));
+
+
+function readteams(){
+  let stringdata = localStorage.getItem('teams')
+  allUsers = JSON.parse(stringdata) || []
+  console.log(chosenteams)
+}
+
+function saveTeams(teams){
+  allUsers.push(teams)
+  savecred()
+}
+
+function savecred(){
+  localStorage.setItem('teams', JSON.stringify(chosenteams))
+} 
+
+
+teamChoices();
+
+
+
+
+
+// nbaTeams.addEventListener('mouseenter', () => {
+//   textToHighlight.style.backgroundColor = 'yellow';
+// });
+
+
+
 const submitBtn = document.querySelector('#submit');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
@@ -48,15 +129,9 @@ const form = document.getElementById('login')
 // global variable for all users who have login credentials
 let allUsers = []
 
-let modal= document.getElementById('myModal')
+
 let btn= document.getElementById('myBtn')
 var span = document.getElementsByClassName("close")[0];
-
-
-
-btn.onclick = function() {
-    modal.style.display = "block";
-  }
 
 
 if (!localStorage.getItem("logininfo")) localStorage.setItem("logininfo", JSON.stringify([]));
