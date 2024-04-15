@@ -1,3 +1,4 @@
+/* main color pallette for website */
 :root{
   --orange: #e75719;
   --darkorange: #9c380d;
@@ -7,12 +8,14 @@
   --silver: #d0d0d0;
 }
 
+/* Typed.js styling */
 #element{
   text-align: center;
   height: 4rem;
   font-weight: 650;
 }
 
+/* reset button */
 #reset{
   background-color: var(--orange);
   color: var(--blueblack);
@@ -21,12 +24,14 @@
   cursor: default;
 }
 
+/* Main portion of the page */
 main{
   display: flex;
   flex-direction: column;
   height: 100%; 
 }  
 
+/* Team cards */
 #teams{
   display: flex;
   flex-direction: row;
@@ -52,22 +57,17 @@ main{
 }
 
 .logos{
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
 }
 
-#compare-team1 .team-logo .logos, #compare-team2 .team-logo .logos{
-  height: 200px;
-  width: 200px;  
-}
-
+/* Drag and Drop area */
 .dragndrop{
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
 }
 
 .compare{
@@ -83,6 +83,7 @@ main{
   flex-direction: row;
 }
 
+/* where team cards will be dragged to */
 #compare-team1, #compare-team2{
   border: 1px solid red;
   height: 100%;
@@ -91,11 +92,18 @@ main{
   justify-content: center;
   align-items: center;
 }
+/* grows team card when dragged into boxes */
+#compare-team1 .team-logo .logos, #compare-team2 .team-logo .logos{
+  height: 200px;
+  width: 200px;  
+}
 
+/* increases team name when dragged into boxes */
 #compare-team1 #team-name, #compare-team2 #team-name{
   font-size: 3rem;
 }
 
+/* winner displayed after comparing */
 #winner{
   height: 20%;
   font-size: 2rem;
@@ -103,13 +111,14 @@ main{
   text-align: center;
 }
 
+/* stats area for dragged teams */
 .team-two, .team-one{
   height: 100%;
   width: 30%;
 }
 
+/* ---------- Media Queries ---------- */
 @media screen and (max-width: 1150px){
-
   #element{
     height: 3rem;
     font-weight: 600;
@@ -124,6 +133,7 @@ main{
     height: 30px;
     width: 30px;
   }
+
   .compare{
     height: 30rem;
     width: 50%;
@@ -142,7 +152,6 @@ main{
   #winner{
     font-size: 2rem;
   }
-
 }
 
 @media screen and (max-width: 900px){
