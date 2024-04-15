@@ -150,11 +150,18 @@ function handleDrop(event, ui) {
   const teamOneStats = $('.team-one');
   const teamTwoStats = $('.team-two');
   const winner = $('#winner');
+  const compare1 = $('#compare-team1');
+  const compare2 = $('#compare-team2');
   let team1 = {};
   let team2 = {};
   teamOneStats.empty();
   teamTwoStats.empty();
   winner.empty();
+
+  if(compare1.html() != '' && compare2.html() != ''){
+    // alert('Please reset the page.')
+    return false;
+  }
 
   for (let team of teams) {
     if (team.id == winId) {
