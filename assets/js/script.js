@@ -91,6 +91,37 @@ function getTeams(){
   }
 }
 
+// let filtered = loginInfo.filter(object => {
+//   return abc(object, "username", $('#login-username').val());
+// })
+
+// function abc(obj, prop, val){
+//   if(!obj.hasOwnProperty(prop)){
+//     return false;
+//   }
+//   else if(obj[prop] === val){
+//     return true;
+//   }else{
+//     return false;
+//   }
+// }
+
+// console.log(filtered)
+
+
+
+
+// function getTeams(){
+//   for(i=0;i<loginInfo.length;i++){
+//     if (loginUsername == loginInfo[i].username){
+//       userTeams.push(loginInfo)
+//     }
+//   }
+// }
+// console.log(userTeams)
+// getTeams()
+
+
 // logout button
 $('#logout').on('click', function (e) {
   e.preventDefault();
@@ -102,6 +133,20 @@ loginBtn.on('click', function (e) {
   e.preventDefault();
   getUserInfo();
   getTeams()
+})
+
+$(document).ready(function() {
+  loginBtn.click(function() {
+    $(".login-data").each(function() {
+      $val = $(this).val();
+      if ($val == '') {      
+        $(this).popover({
+          content: "Invalid"
+        });
+        $(this).popover('show');
+      }
+    })
+  })
 })
 
 
