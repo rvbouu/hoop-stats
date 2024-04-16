@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Bootstrap link-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/style.css">
@@ -12,8 +13,38 @@
 </head>
 
 <body>
+  <header>
     <h1>Hoop Stats</h1>
-    <header>if you already have an account, click <a href='./index2.html'>here<a> to log in</header>
+    <p>If you already have an account <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formModal">Click Here to Login</button></p>
+    <div class="modal fade" tabindex="-1" id="formModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> X </button>
+          </div>
+          <form class="row m-4">
+            <!--login username-->
+            <div class="col-12 mb-4">
+              <label for="login-username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="login-username" />
+            </div>
+            <!-- login password -->
+            <div class="col-12 mb-4">
+              <label for="login-password" class="form-label">Password</label>
+              <input autocomplete="off" type="text" class="form-control" id="login-password" />
+            </div>
+          </form>
+          <!-- login button -->
+          <div class="mb-4 d-flex justify-content-center">
+            <button type="button" class="btn btn-dark login-btn">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
     <h2>Welcome to hoop stats! Sign up below:</h2>
     <!--<div class="logininfo">
         <form id="login">
@@ -36,16 +67,16 @@
   <form id="login">
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="username" aria-describedby="username">
+      <input type="text" class="form-control col-5" id="username" aria-describedby="username">
       <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
     </div>
     <div class="mb-3">
       <label for="password1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password">
+      <input type="password" class="form-control col-5" id="password">
     </div>
     <div class="mb-3">
       <label for="password2" class="form-label">Verify password</label>
-      <input type="password" class="form-control" id="password2">
+      <input type="password" class="form-control col-5" id="password2">
     </div>
     <h3>Choose the teams you want to follow:</h3>
     <div class="mb-3 form-check">
@@ -93,13 +124,13 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <!--jquery UI link-->
   <!--<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>-->
-  <script src="./assets/js/login.js"></script>
+  <script src="./assets/js/login.js"></script>  
 </body>
 
 </html>

@@ -65,7 +65,12 @@ function getApi() {
 }
 getApi();
 
-
+// logout button
+$('#logout').on('click', function(e){
+  e.preventDefault();
+  console.log('logout')
+  window.location.replace('./index.html');
+});
 
 
 

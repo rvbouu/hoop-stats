@@ -233,7 +233,7 @@ function readNBAFromStorage() {
   
   
   
-    if (username.value == '' || password.value == '' || password2.value == '' || teams.vale=='') {
+    if (username.value == '' || password.value == '' || password2.value == '' || teams.value=='') {
       return alert('please fill all fields before continuing')
     } else if (password.value != password2.value) {
       return alert('Passwords do not match')

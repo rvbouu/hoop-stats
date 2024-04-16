@@ -1,3 +1,12 @@
+/* Main color pallette for website */
+:root{
+  --orange: #e75719;
+  --darkorange: #9c380d;
+  --blue: #241aa5;
+  --darkblue: #201d43;
+  --blueblack: #08052f;
+  --silver: #d0d0d0;
+}
 
 body {
   display: flex;
@@ -32,7 +41,6 @@ body {
 
 aside {
   display: flex;
-  /* border: 3px solid red; */
   background-color: black;
   flex-direction: row;
   justify-content: start;
