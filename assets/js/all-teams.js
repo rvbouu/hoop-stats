@@ -11,7 +11,7 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 };
 
-function allTeams() {
+function allTeams() {  //this function posts all the NBA teams with their names and logos to webpage
   const allTeams = $('#allTeams');
   let savedData = readNBAFromStorage();
   let teams = savedData.sports[0].leagues[0].teams;
@@ -25,7 +25,7 @@ function allTeams() {
     aTag.attr('href', `${object.team.links[0].href}`).appendTo(div);
     const img = $('<img>');
     const pTag =$('<a>');
-    pTag.text(`${object.team.displayName}`).appendTo(div)
+    pTag.text(`${object.team.displayName}`).addClass('fw-bold').appendTo(div)
     img.attr('src', object.team.logos[0].href).attr('alt', `${object.team.displayName} logo`).addClass('logos').appendTo(aTag);
     allTeams.append(div);
   }
