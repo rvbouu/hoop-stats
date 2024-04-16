@@ -144,6 +144,14 @@ function readNBAFromStorage() {
       teams: teamNames
     }
   
+    let userData ={
+      username: username.value,
+      password: password.value
+    }
+    localStorage.setItem('userData', JSON.stringify(userData))
+    let userTeams = [];
+    userTeams.push(teamNames);
+    localStorage.setItem('userTeams', JSON.stringify(userTeams));
   
     //logininfo.push(logins)
     //localStorage.setItem("logininfo", JSON.stringify(logins)) 
@@ -156,10 +164,10 @@ function readNBAFromStorage() {
     if (username.value == '' || password.value == '' || password2.value == '' || teams.vale=='') {
       return alert('please fill all fields before continuing')
     } else if (password.value != password2.value) {
-      return alert('Passwords do not match')
+      return alert('Passwords do not match');
     } else {
       console.log("ok")
-      window.location.replace("./homepage.html")
+      window.location.replace("./homepage.html");
       saveNewUser(logins)
   
       const found = allUsers.find(user => user.username === username.value && user.password === password.value && user.teams === teams.value)

@@ -83,7 +83,7 @@ function checkLogin() {
   if (match.length) {
     document.location.href = './homepage.html'
   } else {
-    alert('Username or password is incorrect.')
+
   }
   return match;
 }
@@ -107,36 +107,52 @@ function getTeams(){
   }
 }
 
-// let filtered = loginInfo.filter(object => {
-//   return abc(object, "username", $('#login-username').val());
-// })
+let faveTeams = [];
+function getFaveTeams(){
+  let userTeamsLs = JSON.parse(localStorage.getItem('userTeams'));
+  let nbaTeams = JSON.parse(localStorage.getItem('NBA Teams'));
+  let userTeams = userTeamsLs[0];
 
-// function abc(obj, prop, val){
-//   if(!obj.hasOwnProperty(prop)){
-//     return false;
-//   }
-//   else if(obj[prop] === val){
-//     return true;
-//   }else{
-//     return false;
-//   }
-// }
+  
+  for(let i = 0; i < userTeams.length; i++){
+    let team = userTeams[i];
+    for(let i = 0; i < nbaTeams.length; i++){
+      if(team == nbaTeams[i].team.displayName){
+        let teamInfo = {
+          name: nbaTeams[i].team.displayName,
+          logo: nbaTeams[i].team.logos[0].href,
+          web: nbaTeams[i].team.links[0].href,
+          roster: nbaTeams[i].team.links[1].href,
+          schedule: nbaTeams[i].team.links[3].href
+        }
+        faveTeams.push(teamInfo);
+      }
+    }
+  }
+  console.log(faveTeams)
+}
+getFaveTeams()
+function createFaveTeams(){
+  const teamDisp = $('.row-content');
+  for(let i = 0; i < faveTeams.length; i++){
+    let div = $('<div>');
+    
+    let web = $('<a>');
+    web.attr('href', `${faveTeams[i].web}`).appendTo(div);
 
-// console.log(filtered)
+    let img = $('<img>');
+    img.attr('src', `${faveTeams[i].logo}`).attr('alt', `${faveTeams[i].name} logo`).appendTo(web);
 
-
-
-
-// function getTeams(){
-//   for(i=0;i<loginInfo.length;i++){
-//     if (loginUsername == loginInfo[i].username){
-//       userTeams.push(loginInfo)
-//     }
-//   }
-// }
-// console.log(userTeams)
-// getTeams()
-
+    let h4 = $('<h4>');
+    h4.text(`${faveTeams[i].name}`).appendTo(div);
+    let roster = $('<a>');
+    roster.attr('href', `${faveTeams[i].roster}`).text('Roster').appendTo(div);
+    let schedule = $('<a>');
+    schedule.attr('href', `${faveTeams[i].schedule}`).text('Schedule').appendTo(div);
+    div.appendTo(teamDisp);
+  }
+}
+createFaveTeams()
 
 // logout button
 $('#logout').on('click', function (e) {
@@ -149,6 +165,20 @@ loginBtn.on('click', function (e) {
   e.preventDefault();
   getUserInfo();
   getTeams()
+})
+
+$(document).ready(function() {
+  loginBtn.click(function() {
+    $(".login-data").each(function() {
+      $val = $(this).val();
+      if ($val == '') {      
+        $(this).popover({
+          content: "Invalid"
+        });
+        $(this).popover('show');
+      }
+    })
+  })
 })
 
 
