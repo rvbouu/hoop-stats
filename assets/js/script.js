@@ -102,22 +102,21 @@ $('#logout').on('click', function (e) {
 loginBtn.on('click', function (e) {
   e.preventDefault();
   getUserInfo();
-  getTeams()
 })
 
-$(document).ready(function() {
-  loginBtn.click(function() {
-    $(".login-data").each(function() {
-      $val = $(this).val();
-      if ($val == '') {      
-        $(this).popover({
-          content: "Invalid"
-        });
-        $(this).popover('show');
-      }
-    })
-  })
-})
+// $(document).ready(function() {
+//   loginBtn.click(function() {
+//     $(".login-data").each(function() {
+//       $val = $(this).val();
+//       if ($val == '') {      
+//         $(this).popover({
+//           content: "Invalid"
+//         });
+//         $(this).popover('show');
+//       }
+//     })
+//   })
+// })
 
 
 

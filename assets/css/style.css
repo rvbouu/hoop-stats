@@ -68,21 +68,18 @@ footer {
   height: 2rem;
 }
 
+/* keeps footer at bottom for pages that don't fill vw */
 footer.footer {
   position: absolute;
 }
 
+/* logout button */
 #logout {
   background-color: var(--silver);
   color: var(--blueblack);
   width: 75px;
   margin: 0 auto;
   cursor: default;
-}
-
-#about {
-  font-size: 20px;
-  margin: 20px;
 }
 
 /* ---------- Media Queries ---------- */
