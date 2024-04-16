@@ -1,3 +1,5 @@
+/* ---------- Universal Stylesheet ---------- */
+/* Main color pallette for website */
 :root{
   --orange: #e75719;
   --darkorange: #9c380d;
@@ -7,6 +9,7 @@
   --silver: #d0d0d0;
 }
 
+/* Overall Styling */
 *{
   box-sizing: border-box;
   margin: 0;
@@ -19,6 +22,7 @@ body{
   background-color: var(--darkblue);
 }
 
+/* Header Styling */
 header{
   background-color: var(--orange);
   color: var(--blueblack);
@@ -55,6 +59,7 @@ header h1{
   color: var(--silver)
 }
 
+/* Footer Styling */
 footer{
   display: flex;
   justify-content: center;
@@ -67,6 +72,7 @@ footer.footer{
   position: absolute;
 }
 
+/* ---------- Media Queries ---------- */
 @media screen and (max-width: 1150px){
 header h1{
     font-weight:500;
