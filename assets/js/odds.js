@@ -201,7 +201,7 @@ function handleDrop(event, ui) {
     teamsCompare.push(winId);
     updateTeamDisplay(winId)
   }else{
-    showModal('Please reset page. ')
+    showModal()
   }
 }
 
@@ -233,7 +233,11 @@ $('#reset').on('click', function (e) {
 });
 
 // error message button
-modalError.on('click', hideModal);
+modalError.on('click', function(e){
+  e.preventDefault();
+  document.location.href = './odds.html';
+  hideModal();
+});
 
 // calls functions right when the page is ready and makes lanes droppable
 $(document).ready(function () {
