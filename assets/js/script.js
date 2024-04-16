@@ -65,13 +65,91 @@ function getApi() {
 }
 getApi();
 
+let loginInfo = JSON.parse(localStorage.getItem('logininfo'));
+console.log(loginInfo);
+let loginUsername = $('#login-username').val();
+let loginPassword = $('#login-password').val();
+
+let userTeams = [];
+const loginBtn = $('.login-btn');
+
+function checkLogin() {
+  let loginUsername = $('#login-username').val();
+  let loginPassword = $('#login-password').val();
+
+  let match = loginInfo.filter(user => {
+    return loginUsername === user.username && loginPassword === user.password;
+  })
+  if (match.length) {
+    document.location.href = './homepage.html'
+  } else {
+    alert('Username or password is incorrect.')
+  }
+  return match;
+}
+
+function getUserInfo() {
+  let userData = {
+    username: $('#login-username').val(),
+    password: $('#login-password').val(),
+  }
+  localStorage.setItem('userData', JSON.stringify(userData))
+  checkLogin();
+}
+
+function getTeams(){
+  let userData = JSON.parse(localStorage.getItem('userData'));
+  for(i = 0; i < loginInfo.length; i++){
+    if(userData.username == loginInfo[i].username && userData.password == loginInfo[i].password){
+      userTeams.push(loginInfo[i].teams);
+      localStorage.setItem('userTeams',JSON.stringify(userTeams))
+    }
+  }
+}
+
+// let filtered = loginInfo.filter(object => {
+//   return abc(object, "username", $('#login-username').val());
+// })
+
+// function abc(obj, prop, val){
+//   if(!obj.hasOwnProperty(prop)){
+//     return false;
+//   }
+//   else if(obj[prop] === val){
+//     return true;
+//   }else{
+//     return false;
+//   }
+// }
+
+// console.log(filtered)
+
+
+
+
+// function getTeams(){
+//   for(i=0;i<loginInfo.length;i++){
+//     if (loginUsername == loginInfo[i].username){
+//       userTeams.push(loginInfo)
+//     }
+//   }
+// }
+// console.log(userTeams)
+// getTeams()
+
+
 // logout button
-$('#logout').on('click', function(e){
+$('#logout').on('click', function (e) {
   e.preventDefault();
   console.log('logout')
   window.location.replace('./index.html');
 });
 
+loginBtn.on('click', function (e) {
+  e.preventDefault();
+  getUserInfo();
+  getTeams()
+})
 
 
 
