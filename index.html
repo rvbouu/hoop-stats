@@ -14,6 +14,7 @@
 
 <body>
   <header>
+    <!---the header where the logog and the login button is-->
     <h1><img src="./assets/images/hoop-stats-logo.png" alt="Hoop Stats Logo" id="hoopstats-logo"/></h1>
     <p>If you already have an account <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formModal">Click Here to Login</button></p>
     <div class="modal fade" tabindex="-1" id="formModal">
@@ -23,6 +24,7 @@
             <h5 class="modal-title">Login</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> X </button>
           </div>
+          <!--form where the user can input an already existing username and password-->
           <form class="row m-4">
             <!--login username-->
             <div class="col-12 mb-4">
@@ -44,31 +46,17 @@
         </div>
       </div>
     </div>
+
+    <!--for where a new user can input a username, password, and choose the teams they want to follow-->
   </header>
     <h2>Welcome to hoop stats! Sign up below:</h2>
-    <!--<div class="logininfo">
-        <form id="login">
-            <fieldset >
-                <label>Username:</label>
-                <input type="text" id="username"/>
-            </fieldset>
-            <fieldset >
-                <label>Password:</label>
-                <input type="text" id="password"/>
-            </fieldset>
-            <fieldset >
-                <label>Verify password:</label>
-                <input type="text" id="password2"/>
-            </fieldset>
-        <button class="btn" id="submit" type="submit">Sign Up</button>
-    </form>
-    </div>-->
+
   <div class="logininfo"></div>
   <form id="login">
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" class="form-control col-5" id="username" aria-describedby="username">
-      <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+     
     </div>
     <div class="mb-3">
       <label for="password1" class="form-label">Password</label>
@@ -80,8 +68,7 @@
     </div>
     <h3>Choose the teams you want to follow:</h3>
     <div class="mb-3 form-check">
-      <!-- <input type="checkbox" class="form-check-input" id="checkboxes">
-      <label class="form-check-label" for="checkboxes"> -->
+    
         <section class="teams row m-2">
 
 
@@ -92,24 +79,7 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   </div>
-  <!--<div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-        Default checkbox
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-      <label class="form-check-label" for="flexCheckChecked">
-        Checked checkbox
-      </label>-->
 
-
-  <!--<section class="teams row m-2">
-        
-      
-       
-      </section>-->
 
   </div>
 
@@ -118,6 +88,7 @@
   <footer>
     <h4>&copy; A Group One Production &#127936;</h4>
   </footer>
+  <!--script tags-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -128,8 +99,6 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <!--jquery UI link-->
-  <!--<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>-->
   <script src="./assets/js/login.js"></script>
   <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>

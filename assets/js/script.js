@@ -17,25 +17,7 @@ function saveNBAToStorage(nba) {
 
 
 
-/*function chooseTeams(){
-  let apiInfo= readNBAFromSorage()
-  let teams= apiInfo.sports[0].leagues[0].teams
 
-  for(i=0; i<teams.length; i++){
-    const displayTeams= $('<.teams');
-    const modalDisplay= $('<div>')
-    modalDisplay.addClass('team-logo col text-center');
-
-
-    const  pTag= $('<p>');
-    pTag.text(teams[i].team.displayName)
-
-
-
-  }
-
-}
-chooseTeams() */
 
 
 // gets NBA data from api and saves it to localStorage
@@ -83,7 +65,9 @@ function checkLogin() {
   if (match.length) {
     document.location.href = './homepage.html'
   } else {
-    alert('Username or password is incorrect.')
+    $(loginBtn).popover({
+      content: 'Username or password is incorrect'
+    });
   }
   return match;
 }
@@ -106,37 +90,6 @@ function getTeams(){
     }
   }
 }
-
-// let filtered = loginInfo.filter(object => {
-//   return abc(object, "username", $('#login-username').val());
-// })
-
-// function abc(obj, prop, val){
-//   if(!obj.hasOwnProperty(prop)){
-//     return false;
-//   }
-//   else if(obj[prop] === val){
-//     return true;
-//   }else{
-//     return false;
-//   }
-// }
-
-// console.log(filtered)
-
-
-
-
-// function getTeams(){
-//   for(i=0;i<loginInfo.length;i++){
-//     if (loginUsername == loginInfo[i].username){
-//       userTeams.push(loginInfo)
-//     }
-//   }
-// }
-// console.log(userTeams)
-// getTeams()
-
 
 // logout button
 $('#logout').on('click', function (e) {
