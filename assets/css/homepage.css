@@ -67,3 +67,45 @@ aside div {
   width: 100%;
   padding-right: 5px;
 }
+
+.my-teams {
+  text-align: center;
+  font-size: 3rem ;
+}
+
+/* ---------- Media Queries ---------- */
+@media screen and (max-width: 1150px) {
+  
+}
+
+@media screen and (max-width: 900px) {
+  .rando{
+    display: flex;
+    flex-direction: column;
+  }
+
+  aside{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .rando{
+    display: flex;
+    flex-direction: column;
+  }
+
+  aside{
+    width: 100%;
+  }
+}
+  
+
+@media screen and (max-width: 400px) {
+  .rando{
+    display: flex;
+    flex-direction: column;
+    /* padding: 10px;
+    margin: 10px; */
+  }
+}
