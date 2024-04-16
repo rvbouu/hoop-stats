@@ -24,6 +24,8 @@ function allTeams() {
     const aTag = $('<a>');
     aTag.attr('href', `${object.team.links[0].href}`).appendTo(div);
     const img = $('<img>');
+    const pTag =$('<a>');
+    pTag.text(`${object.team.displayName}`).appendTo(div)
     img.attr('src', object.team.logos[0].href).attr('alt', `${object.team.displayName} logo`).addClass('logos').appendTo(aTag);
     allTeams.append(div);
   }

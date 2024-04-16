@@ -6,6 +6,7 @@
 // reset button to clear out comparison square
 // requestURL for individual teams :: http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team abbr}
 
+let alerts = false
 
 // gets NBA data from localStorage
 function readNBAFromStorage() {
@@ -165,10 +166,13 @@ function handleDrop(event, ui) {
 
   // if compare boxes are full, sends alert to user to reset page
   // ??? why alert sending twice?
-  if(compare1.html() != '' && compare2.html() != ''){
+  if( !alerts && compare1.html() != '' && compare2.html() != ''){
+    alerts = true;
     alert('Please reset the page.');
-    return false;
+    // return false;
   }
+
+  // if(event.target.child())
 
   for (let team of teams) {
     // updates status of card to where card is dragged to
