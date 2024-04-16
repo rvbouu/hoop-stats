@@ -47,30 +47,57 @@ function saveTeamsToStorage(teamArray) {
 //   }
 // }
 
-function scheduleAPI(){
-  const requestURL ='https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard';
+function scheduleAPI() {
+  const requestURL = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard';
 
-fetch(requestURL)
-  .then(function(response){
-    return response.json();
-  })
+  fetch(requestURL)
+    .then(function (response) {
+      return response.json();
+    })
 
-.then(function(data){
-  console.log(data);
-  let schedule = []
-  let event = {
-    date: data.event[0].status.type.detail,
-    name: data.event[0].name
+    .then(function (data) {
+      console.log(data);
+      let schedule = []
+      let events = data.events
+      console.log(events);
+
+      
+      for (let i = 0; i < events.length; i++) {
+        let event = {
+          date: events[i].status.type.detail,
+          name: events[i].name,
+          description: events[i].status.type.description,
+          clock: events[i].status.clock,
+          period: events[i].status.period,
+    } 
+    schedule.push(event);
   }
-})
-  .then(function(data){
+      console.log(schedule);
+      for (let i = 0; i <schedule.length; i++) {
+        let sidebar = $(".sidebar");
+        let div = $('<div>');
+        div.appendTo(sidebar);
+        let name = $('<h3>');
+        name.text(`${schedule[i].name}`).appendTo(div);
+        let date = $('<h4>');
+        date.text(`${schedule[i].date}`).appendTo(div);
+        let period = $('<p>');
+        period.text(`Period: ${schedule[i].period}`).appendTo(div);
+        let clock = $('<p>');
+        clock.text(`Clock: ${schedule[i].clock}`).appendTo(div);
+        let description = $('<p>');
+        description.text(`${schedule[i].description}`).appendTo(div);
+        // div.appendTo(sidebar);
+      }
 
-  for(let i = 0; i < teams.length; i++){
-    const obj = data[i];
-    console.log(obj.data);
 
-    // const pTag = document.createElement('p');
-    // pTag.textContent
+      // const div = documnet.createElement('aside');
+      // dataArea.appendChild(div)
+
+    
+  })
+  
+  // pTag.textContent
 
 }
 
@@ -80,5 +107,5 @@ fetch(requestURL)
 
 // function upcomingGames {
 //   const games = $('aside')
-}
+
 scheduleAPI();
