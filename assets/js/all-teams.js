@@ -11,7 +11,7 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 };
 
-function allTeams() {
+function allTeams() {  //this function posts all the NBA teams with their names and logos to webpage
   const allTeams = $('#allTeams');
   let savedData = readNBAFromStorage();
   let teams = savedData.sports[0].leagues[0].teams;
