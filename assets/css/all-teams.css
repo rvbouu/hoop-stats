@@ -16,12 +16,15 @@ margin-top: 20px;
 font-size: 20px;
 }
 
-#teams {
-  border-right: 1px solid black;
-  height: 400px;
+#team {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
 }
 
 img{
-  height: 75px;
-  width: 75px;
+  height: 150px;
+  width: 150px;
+  padding: 10px;
+  
 }
