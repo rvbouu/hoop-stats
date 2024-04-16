@@ -91,6 +91,36 @@ function getTeams(){
   }
 }
 
+// let filtered = loginInfo.filter(object => {
+//   return abc(object, "username", $('#login-username').val());
+// })
+
+// function abc(obj, prop, val){
+//   if(!obj.hasOwnProperty(prop)){
+//     return false;
+//   }
+//   else if(obj[prop] === val){
+//     return true;
+//   }else{
+//     return false;
+//   }
+// }
+
+// console.log(filtered)
+
+
+
+
+// function getTeams(){
+//   for(i=0;i<loginInfo.length;i++){
+//     if (loginUsername == loginInfo[i].username){
+//       userTeams.push(loginInfo)
+//     }
+//   }
+// }
+// console.log(userTeams)
+// getTeams()
+
 
 // logout button
 $('#logout').on('click', function (e) {
@@ -123,3 +153,4 @@ $(document).ready(function() {
 
 
 
+a

@@ -11,7 +11,7 @@ function readNBAFromStorage() {
     localStorage.setItem('NBA', savedNBA);
   }
   
-  
+  // gets infor from the API to diplay the team logos and names and appends to html
   function teamChoices() {
     let savedData = readNBAFromStorage();
     let nbaTeams = savedData.sports[0].leagues[0].teams;
@@ -24,56 +24,29 @@ function readNBAFromStorage() {
       const teamSect = $('.teams');
       const mainDiv = $('<label>');
       mainDiv.addClass('team-logo text-center form-check-label').text(nbaTeams[i].team.displayName);
-      //const pTag = $('<p>');
-      //pTag.text(nbaTeams[i].team.displayName).addClass('fw-bold text-center').attr('id', 'team-name');
   
       const img = $('<img>');
       img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`).attr('style', 'width:30px;height:30px;')
-     // mainDiv.append(pTag, img);
+    
       divEl.append(input, img, mainDiv);
       teamSect.append(divEl);
   
-      // const input = document.createElement('input')
-      // input.type = 'checkbox'
-      // const parent = document.getElementById('checkboxes')
-      // parent.appendchild(input)
+    
   
     }
   }
   
+
+  //makes chosen teams into an array and saves them to local storage
   let chosenteams = []
   
   if (!localStorage.getItem("teams")) localStorage.setItem("teams", JSON.stringify([]));
   
   
-  function readteams() {
-    let stringdata = localStorage.getItem('teams')
-    allUsers = JSON.parse(stringdata) || []
-    console.log(chosenteams)
-  }
-  
-  function saveTeams(teams) {
-    allUsers.push(teams)
-    savecred()
-  }
-  
-  function savecred() {
-    localStorage.setItem('teams', JSON.stringify(chosenteams))
-  }
-  
   
   teamChoices();
   
-  
-  
-  
-  
-  // nbaTeams.addEventListener('mouseenter', () => {
-  //   textToHighlight.style.backgroundColor = 'yellow';
-  // });
-  
-  
-  
+  //global variables for login information
   const submitBtn = document.querySelector('#submit');
   const username = document.getElementById('username');
   const password = document.getElementById('password');
@@ -88,29 +61,9 @@ function readNBAFromStorage() {
   let btn = document.getElementById('myBtn')
   var span = document.getElementsByClassName("close")[0];
   
-  
+  //saving login info to local storage
   if (!localStorage.getItem("logininfo")) localStorage.setItem("logininfo", JSON.stringify([]));
-  
-  //var arr = JSON.parse(localStorage.getItem("logininfo"));
-  //console.log(arr)
-  
-  // function readCheckboxes() {
-  //   let stringdata = localStorage.getItem('teamchoices')
-  //   userChoices = JSON.parse(stringdata) || []
-  //   console.log(userChoices)
-  // }
-  
-  // function saveCheckboxes(){
-  //   let checkedBoxes= JSON.parselocalstorage.getitem('teamchoices');
-  //   if (checkedBoxes == true) {
-  //     document.getElementById("teamchoices").checked = true;
-  // }
-  // }
-  
-  // function savecredits() {
-  //   localStorage.setItem('teamchoices', JSON.stringify(userChoices))
-  // }
-  
+
   function readcred() {
     let stringdata = localStorage.getItem('logininfo')
     allUsers = JSON.parse(stringdata) || []
@@ -126,8 +79,7 @@ function readNBAFromStorage() {
     localStorage.setItem('logininfo', JSON.stringify(allUsers))
   }
   
-  // let logininfo = localStorage.getItem('logininfo')
-  // let login = JSON.parse(logininfo) || []
+ //saves username, password, and checked teams to one user
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     console.log("ok")
@@ -153,13 +105,8 @@ function readNBAFromStorage() {
     userTeams.push(teamNames);
     localStorage.setItem('userTeams', JSON.stringify(userTeams));
   
-    //logininfo.push(logins)
-    //localStorage.setItem("logininfo", JSON.stringify(logins)) 
-    //login.push(logins);
-    //localStorage.setItem("logininfo", JSON.stringify(login))
-  
-  
-  
+
+    //makes sure that all fields are properly filled in before redirecting to the home page
   
     if (username.value == '' || password.value == '' || password2.value == '' || teams.vale=='') {
       return alert('please fill all fields before continuing')
@@ -176,10 +123,6 @@ function readNBAFromStorage() {
   
   
   })
-  
-  
-  //else { window.location.replace("./homepage.html"); 
-  
   
   // Every time the page loads, we want to get all users with login credentials
   readcred();
