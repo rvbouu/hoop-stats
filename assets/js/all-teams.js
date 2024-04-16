@@ -33,4 +33,4 @@ function allTeams() {  //this function posts all the NBA teams with their names 
   return allTeams;
 }
 
-allTeams();
+allTeams(); // calls the function  
