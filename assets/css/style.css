@@ -1,6 +1,6 @@
 /* ---------- Universal Stylesheet ---------- */
 /* Main color pallette for website */
-:root{
+:root {
   --orange: #e75719;
   --darkorange: #9c380d;
   --blue: #241aa5;
@@ -10,20 +10,20 @@
 }
 
 /* Overall Styling */
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
   height: 100%;
   color: var(--silver);
   background-color: var(--darkblue);
 }
 
 /* Header Styling */
-header{
+header {
   background-color: var(--orange);
   color: var(--blueblack);
   display: flex;
@@ -33,19 +33,19 @@ header{
   padding-right: 10px;
 }
 
-header h1{
-  font-weight:500;
+header h1 {
+  font-weight: 500;
   font-size: 4.25rem;
   text-wrap: nowrap;
 }
 
-#hoopstats-logo{
+#hoopstats-logo {
   max-width: 250px;
   width: auto;
   height: auto;
 }
 
-.navbar a{
+.navbar a {
   text-decoration: none;
   color: var(--blueblack);
   font-size: 1.5rem;
@@ -54,63 +54,75 @@ header h1{
   text-wrap: nowrap;
 }
 
-.navbar a:hover{
+.navbar a:hover {
   background-color: var(--darkorange);
   color: var(--silver)
 }
 
 /* Footer Styling */
-footer{
+footer {
   display: flex;
   justify-content: center;
   bottom: 0;
   width: 100%;
-  height:2rem;
+  height: 2rem;
 }
 
-footer.footer{
+footer.footer {
   position: absolute;
 }
 
+footer h4{
+  flex-grow:1;
+}
+
+#logout {
+  background-color: var(--silver);
+  color: var(--blueblack);
+  width: 75px;
+  margin: 0 auto;
+  cursor: default;
+}
+
 /* ---------- Media Queries ---------- */
-@media screen and (max-width: 1150px){
-header h1{
-    font-weight:500;
+@media screen and (max-width: 1150px) {
+  header h1 {
+    font-weight: 500;
     font-size: 4rem;
   }
 
-  .navbar a{
+  .navbar a {
     padding: 10px;
     margin: 10px;
   }
 }
 
-@media screen and (max-width: 900px){
-  header h1{
-    font-weight:500;
+@media screen and (max-width: 900px) {
+  header h1 {
+    font-weight: 500;
     font-size: 3rem;
   }
 
-  .navbar a{
+  .navbar a {
     padding: 8px;
     margin: 8px;
     font-size: 1rem;
   }
 }
 
-@media screen and (max-width: 750px){
-  header{
+@media screen and (max-width: 750px) {
+  header {
     display: flex;
     flex-direction: column;
   }
 }
 
-@media screen and (max-width: 400px){
-  header{
+@media screen and (max-width: 400px) {
+  header {
     width: 100%;
   }
 
-  header h1{
+  header h1 {
     font-size: 2.5rem;
   }
 }
