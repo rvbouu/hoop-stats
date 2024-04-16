@@ -75,7 +75,14 @@ aside div {
 
 /* ---------- Media Queries ---------- */
 @media screen and (max-width: 1150px) {
-  
+  .rando{
+    display: flex;
+    flex-direction: column;
+  }
+
+  aside {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 900px) {
