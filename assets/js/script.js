@@ -68,7 +68,8 @@ getApi();
 // logout button
 $('#logout').on('click', function(e){
   e.preventDefault();
-  document.location.href = './index.html';
+  console.log('logout')
+  window.location.replace('./index.html');
 });
 
 

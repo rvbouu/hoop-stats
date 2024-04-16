@@ -72,10 +72,6 @@ footer.footer {
   position: absolute;
 }
 
-footer h4{
-  flex-grow:1;
-}
-
 #logout {
   background-color: var(--silver);
   color: var(--blueblack);
