@@ -3,29 +3,24 @@
 function getApi() {
   // URL where we're requesting data from - ESPN NBA
   const requestURL = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams`;
-  console.log(requestURL);
-
+  // console.log(requestURL);
   // fetch request gets a list of all teams in the NBA
   fetch(requestURL)
     .then(response => {
       // converts a json string into a js object/array
       return response.json();
     })
-
     // saving converted data to localStorage 
     .then(data => {
-      console.log(data);
+      // console.log(data);
       localStorage.setItem('NBA', JSON.stringify(data))
     })
-
     // catches error if occurs and alerts user that something when wrong
     .catch(function (error) {
       console.log(error);
       alert('An error has occured.');
     });
-    
 }
-getApi();
 
 // gets NBA data from localStorage
 function readNBAFromStorage() {
@@ -40,14 +35,19 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 }
 
+// gets login values from login form
 let loginInfo = JSON.parse(localStorage.getItem('logininfo'));
-console.log(loginInfo);
+// console.log(loginInfo);
 let loginUsername = $('#login-username').val();
 let loginPassword = $('#login-password').val();
 
+// where favorite teams from loginInfo localStorage will get saved to
 let userTeams = [];
+// login button DOM
 const loginBtn = $('.login-btn');
 
+// checks login values vs. accounts created through submit form
+// if found, allows login
 function checkLogin() {
   let loginUsername = $('#login-username').val();
   let loginPassword = $('#login-password').val();
@@ -65,6 +65,7 @@ function checkLogin() {
   return match;
 }
 
+// sets login user's data to localStorage
 function getUserInfo() {
   let userData = {
     username: $('#login-username').val(),
@@ -74,48 +75,29 @@ function getUserInfo() {
   checkLogin();
 }
 
-function getTeams(){
+// gets teams associated with login user to populate homepage
+function getTeams() {
   let userData = JSON.parse(localStorage.getItem('userData'));
-  for(i = 0; i < loginInfo.length; i++){
-    if(userData.username == loginInfo[i].username && userData.password == loginInfo[i].password){
+  for (i = 0; i < loginInfo.length; i++) {
+    if (userData.username == loginInfo[i].username && userData.password == loginInfo[i].password) {
       userTeams.push(loginInfo[i].teams);
-      localStorage.setItem('userTeams',JSON.stringify(userTeams))
+      localStorage.setItem('userTeams', JSON.stringify(userTeams))
     }
   }
 }
 
-$('#lgpage').on('click', function(e){
-  e.preventDefault();
-  window.location.replace('./login.html')
-})
+// calling getApi function
+getApi();
 
 // logout button
 $('#logout').on('click', function (e) {
   e.preventDefault();
-  console.log('logout')
-  window.location.replace('./login.html');
+  // console.log('logout')
+  window.location.replace('./index.html');
 });
 
+// login button
 loginBtn.on('click', function (e) {
   e.preventDefault();
   getUserInfo();
 })
-
-// $(document).ready(function() {
-//   loginBtn.click(function() {
-//     $(".login-data").each(function() {
-//       $val = $(this).val();
-//       if ($val == '') {      
-//         $(this).popover({
-//           content: "Invalid"
-//         });
-//         $(this).popover('show');
-//       }
-//     })
-//   })
-// })
-
-
-
-
-

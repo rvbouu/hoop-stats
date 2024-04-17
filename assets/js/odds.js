@@ -1,11 +1,3 @@
-// JS file for what are the odds page
-// taking two teams and compares overall win percent
-// highlights winner in green
-// shows both teams overall stats on sides
-// at top: images for all teams that are drag/droppable
-// reset button to clear out comparison square
-// requestURL for individual teams :: http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team abbr}
-
 const modal = $("#modal");
 const modalError = $('#modal-error')
 const teamsSect = $('#teams');
@@ -18,11 +10,11 @@ const teamsCompare = [];
 let teams;
 
 // Modal functions
-function showModal(content){
+function showModal(content) {
   modal.append(content).css("display", "block")
 }
 
-function hideModal(){
+function hideModal() {
   modal.html("").css("display", "none")
 }
 
@@ -91,16 +83,16 @@ function getTeamApi() {
 }
 
 // renders team logos at the top of the page
-function renderAllLogos(){
-  teams.forEach( team => {
-    const id = team.id 
-    teamsSect.append( createTeamCard(id) )
+function renderAllLogos() {
+  teams.forEach(team => {
+    const id = team.id
+    teamsSect.append(createTeamCard(id))
   })
 }
 
 // gets the id for dragged teams
-function getStatsForTeam(teamId){
-  return teams.find( team => team.id === teamId )
+function getStatsForTeam(teamId) {
+  return teams.find(team => team.id === teamId)
 }
 // creates team logo cards and returns it
 function createTeamCard(teamId) {
@@ -141,31 +133,10 @@ function createStats(teamId) {
 
 // renders team logo cards and makes them draggable
 function renderTeam() {
-  // const teams = readTeamsFromStorage('teamArray');
-
-  // const teamsSect = $('#teams');
-  // teamsSect.empty();
-  // const compare1 = $('#compare-team1');
-  // compare1.empty();
-  // const compare2 = $('#compare-team2');
-  // compare2.empty()
-
-  // // for loop to change status of card when dragged to certain box
-  // for (let team of teams) {
-  //   if (team.status == 'teams') {
-  //     createTeamCard(team).appendTo(teamsSect);
-  //   } else if (team.status == 'compare-team1') {
-  //     createTeamCard(team).appendTo(compare1);
-  //   } else if (team.status == 'compare-team2') {
-  //     createTeamCard(team).appendTo(compare2)
-  //   }
-  // }
   // makes cards draggable
   $('.draggable').draggable({
     opacity: 0.7,
     zIndex: 100,
-
-
     // creates clone of card being dragged (visual only)
     helper: function (e) {
       // checks whether target of drag is card itself or child element. If card itself, clone it, else find parent card that is draggable and clone that.
@@ -181,11 +152,11 @@ function renderTeam() {
 }
 
 // updates the display depending on where card is dragged and displays stats
-function updateTeamDisplay(teamId){
-  if(teamsCompare.length === 1){
+function updateTeamDisplay(teamId) {
+  if (teamsCompare.length === 1) {
     teamOneStats.append(createStats(teamId))
     compare1.append(createTeamCard(teamId))
-  }else{
+  } else {
     teamTwoStats.append(createStats(teamId))
     compare2.append(createTeamCard(teamId))
     compareTeams();
@@ -195,18 +166,18 @@ function updateTeamDisplay(teamId){
 // handles drop of cards
 function handleDrop(event, ui) {
   const winId = ui.draggable[0].dataset.winId;
-  if( teamsCompare.find( team => team === winId) ) return false;
+  if (teamsCompare.find(team => team === winId)) return false;
 
-  if(teamsCompare.length < 2){
+  if (teamsCompare.length < 2) {
     teamsCompare.push(winId);
     updateTeamDisplay(winId)
-  }else{
+  } else {
     showModal()
   }
 }
 
 // compares the teams that are dragged into compare boxes
-function compareTeams(){
+function compareTeams() {
   const team1 = getStatsForTeam(teamsCompare[0]);
   const team2 = getStatsForTeam(teamsCompare[1]);
 
@@ -222,8 +193,9 @@ function compareTeams(){
 }
 
 // load function that will render logos to screen and assign readTeamsFromStorage to teams variable
-function load(){
+function load() {
   teams = readTeamsFromStorage();
+  getTeamApi();
   renderAllLogos();
 }
 
@@ -233,7 +205,7 @@ $('#reset').on('click', function (e) {
 });
 
 // error message button
-modalError.on('click', function(e){
+modalError.on('click', function (e) {
   e.preventDefault();
   document.location.href = './odds.html';
   hideModal();
@@ -241,8 +213,6 @@ modalError.on('click', function(e){
 
 // calls functions right when the page is ready and makes lanes droppable
 $(document).ready(function () {
-  getTeamApi();
-
   // makes lanes droppable
   $('.lane').droppable({
     accept: '.draggable',
