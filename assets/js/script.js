@@ -105,19 +105,19 @@ loginBtn.on('click', function (e) {
   getTeams()
 })
 
-$(document).ready(function() {
-  loginBtn.click(function() {
-    $(".login-data").each(function() {
-      $val = $(this).val();
-      if ($val == '') {      
-        $(this).popover({
-          content: "Invalid"
-        });
-        $(this).popover('show');
-      }
-    })
-  })
-})
+// $(document).ready(function() {
+//   loginBtn.click(function() {
+//     $(".login-data").each(function() {
+//       $val = $(this).val();
+//       if ($val == '') {      
+//         $(this).popover({
+//           content: "Invalid"
+//         });
+//         $(this).popover('show');
+//       }
+//     })
+//   })
+// })
 
 
 

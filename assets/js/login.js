@@ -54,6 +54,7 @@ function readNBAFromStorage() {
   const form = document.getElementById('login')
   
   
+  
   // global variable for all users who have login credentials
   let allUsers = []
   
@@ -108,10 +109,14 @@ function readNBAFromStorage() {
 
     //makes sure that all fields are properly filled in before redirecting to the home page
   
-    if (username.value == '' || password.value == '' || password2.value == '' || teams.vale=='') {
-      return alert('please fill all fields before continuing')
+    if (username.value == '' || password.value == '' || password2.value == '') {
+      $(submitBtn).popover({
+        content: 'Please fill all fields before continuing'
+      });
     } else if (password.value != password2.value) {
-      return alert('Passwords do not match');
+      $(submitBtn).popover({
+        content: 'Passwords do not match'
+      });
     } else {
       console.log("ok")
       window.location.replace("./homepage.html");
