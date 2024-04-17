@@ -129,6 +129,7 @@ main{
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  color:#00be6f;
 }
 
 /* stats area for dragged teams */
@@ -258,7 +259,6 @@ main{
 
   #winner{
     font-size: 15px;
-    color: #00be6f;
   }
 
   .team-one, .team-two{
