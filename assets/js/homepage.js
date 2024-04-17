@@ -121,6 +121,8 @@ function populateFavTeams() {
     }
 
   }
+
+  // calling the functions here 
 populateFavTeams();
 createFavTeams();
 scheduleAPI();
