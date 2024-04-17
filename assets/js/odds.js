@@ -231,7 +231,8 @@ $('#reset').on('click', function (e) {
 });
   
 
-$('modal-error').on('click', function () {
+$('modal-error').on('click', function (e) {
+  e.preventDefault();
   document.location.href = './odds.html';
   hideModal();
 });
