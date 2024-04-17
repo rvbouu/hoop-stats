@@ -236,11 +236,11 @@ $('modal-error').on('click', function (e) {
   document.location.href = './odds.html';
   hideModal();
 });
-
+getTeamApi();
 // calls functions right when the page is ready and makes lanes droppable
 $(document).ready(function () {
   // renders tasks if there is any
-  getTeamApi();
+  
 
   // makes lanes droppable
   $('.lane').droppable({
