@@ -202,7 +202,9 @@ function handleDrop(event, ui) {
   if( teamsBeingCompared.length < 2 ){
     teamsBeingCompared.push(winId)
     updateTeamDisplay(winId, event.target.id)
-  } 
+  } else{
+    showModal();
+  }
   // renderTeam();
 }
 
@@ -226,6 +228,13 @@ function compareTeams(){
 // reset button
 $('#reset').on('click', function (e) {
   document.location.href = './odds.html';
+});
+  
+
+modalError.on('click', function (e) {
+  e.preventDefault();
+  document.location.href = './odds.html';
+  hideModal();
 });
 
 // calls functions right when the page is ready and makes lanes droppable
