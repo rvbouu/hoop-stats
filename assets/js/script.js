@@ -56,6 +56,8 @@ function checkLogin() {
     return loginUsername === user.username && loginPassword === user.password;
   })
   if (match.length) {
+    getUserInfo();
+    getTeams()
     document.location.href = './homepage.html'
   } else {
     $(loginBtn).popover({
@@ -72,7 +74,7 @@ function getUserInfo() {
     password: $('#login-password').val(),
   }
   localStorage.setItem('userData', JSON.stringify(userData))
-  checkLogin();
+  // checkLogin();
 }
 
 // gets teams associated with login user to populate homepage
@@ -84,6 +86,7 @@ function getTeams() {
       localStorage.setItem('userTeams', JSON.stringify(userTeams))
     }
   }
+  // getUserInfo();
 }
 
 // calling getApi function
@@ -97,7 +100,7 @@ $('#logout').on('click', function (e) {
 });
 
 // login button
-loginBtn.on('click', function (e) {
-  e.preventDefault();
-  getUserInfo();
+loginBtn.on('click', function () {
+  // e.preventDefault();
+  checkLogin();
 })

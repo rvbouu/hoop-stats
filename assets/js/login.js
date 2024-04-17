@@ -74,7 +74,7 @@ form.addEventListener('submit', function (event) {
   // console.log("ok")
   const teams = document.querySelectorAll("input[type='checkbox']:checked")
   // console.log(teams)
-  const teamNames = []
+  let teamNames = [];
   for (let i = 0; i < teams.length; i++) {
     teamNames.push(teams[i].dataset.teamname)
   }

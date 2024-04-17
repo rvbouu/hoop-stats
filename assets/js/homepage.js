@@ -65,7 +65,6 @@ function scheduleAPI() {
 
 let favTeams = [];
 function populateFavTeams() {
-
   // this function is getting the favorite teams from the users selected teams in the info saved from the local storage.
   let userTeamsLs = JSON.parse(localStorage.getItem('userTeams'));
   let nbaTeams = JSON.parse(localStorage.getItem('NBA Teams'));
@@ -80,7 +79,7 @@ function populateFavTeams() {
           logo: nbaTeams[i].team.logos[0].href,
           web: nbaTeams[i].team.links[0].href,
           roster: nbaTeams[i].team.links[1].href,
-          shcedule: nbaTeams[i].team.links[3].href
+          schedule: nbaTeams[i].team.links[3].href
         }
         favTeams.push(teamInfo);
       }
@@ -109,6 +108,6 @@ function createFavTeams() {
 }
 
 // calling the functions here 
+scheduleAPI();
 populateFavTeams();
 createFavTeams();
-scheduleAPI();
