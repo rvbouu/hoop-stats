@@ -8,6 +8,8 @@ Hoop Stats was created by a group of four bootcamp students (Vanessa Bou, Kyle B
 
 Thanks for visiting Hoop Stats! We hope that you enjoy it as much as we enjoyed building it!
 
+**Work In-Progress** odds page does not load through deployed link properly but when on local device (html in browser).
+
 ## Authors
 
 Ozge Ahunbay
@@ -19,6 +21,11 @@ Kyle Butcher
 Joel Hansen
 
 ## Badges and Acknowledgements
+
+**Thank you** to our instructor Gary and TA Katy for assisting us with our many GitHub and code issues.
+
+**Thank you** to all team members for all their hard work and efforts.
+
 [![Bootstrap]( https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com)
 
 [![JQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)](https://jquery.com)
