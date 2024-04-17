@@ -26,25 +26,7 @@ function getApi() {
     .then(data => {
       // console.log(data);
       nbaTeams = data.sports[0].leagues[0].teams;
-      localStorage.setItem('NBA', JSON.stringify(data));
-
-      // gets infor from the API to diplay the team logos and names and appends to html
-
-      for (i = 0; i < nbaTeams.length; i++) {
-        let divEl = $('<div>')
-        divEl.addClass('m-4')
-        let input = $(`<input data-teamname="${nbaTeams[i].team.displayName}">`)
-        input.attr('type', 'checkbox').addClass('form-check-input')
-        const teamSect = $('.teams');
-        const mainDiv = $('<label>');
-        mainDiv.addClass('team-logo text-center form-check-label').text(nbaTeams[i].team.displayName);
-    
-        const img = $('<img>');
-        img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`).attr('style', 'width:30px;height:30px;')
-    
-        divEl.append(input, img, mainDiv);
-        teamSect.append(divEl);
-      }
+      localStorage.setItem('NBA Teams', JSON.stringify(data));
     })
     // catches error if occurs and alerts user that something when wrong
     .catch(function (error) {
