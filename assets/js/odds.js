@@ -22,7 +22,7 @@ const apis = [
   {
     league: 'NBA',
     getTeams: function(abbreviation){
-      return `http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${abbreviation}`
+      return `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${abbreviation}`
     }
   }
 ]
