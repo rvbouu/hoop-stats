@@ -231,10 +231,10 @@ $('#reset').on('click', function (e) {
 });
   
 
-$('modal-error').on('click', function (e) {
+$('#modal-error').on('click', function (e) {
   e.preventDefault();
-  document.location.href = './odds.html';
   hideModal();
+  document.location.href = './odds.html';
 });
 getTeamApi();
 // calls functions right when the page is ready and makes lanes droppable
