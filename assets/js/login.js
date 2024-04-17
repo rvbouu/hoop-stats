@@ -14,7 +14,7 @@ function saveNBAToStorage(nba) {
 function teamChoices() {
   let savedData = readNBAFromStorage();
   let nbaTeams = savedData.sports[0].leagues[0].teams;
-  console.log(nbaTeams)
+  // console.log(nbaTeams)
   // console.log(nbaTeams)
   for (i = 0; i < nbaTeams.length; i++) {
     let divEl = $('<div>')
@@ -112,6 +112,5 @@ form.addEventListener('submit', function (event) {
     console.log(found)
   }
 })
-teamChoices();
 // Every time the page loads, we want to get all users with login credentials
 readcred();

@@ -1,4 +1,3 @@
-let nbaTeams;
 // gets NBA data from localStorage
 function readNBAFromStorage() {
   let stringData = localStorage.getItem('NBA');
@@ -25,7 +24,6 @@ function getApi() {
     // saving converted data to localStorage 
     .then(data => {
       // console.log(data);
-      nbaTeams = data.sports[0].leagues[0].teams;
       localStorage.setItem('NBA Teams', JSON.stringify(data));
     })
     // catches error if occurs and alerts user that something when wrong
@@ -34,7 +32,8 @@ function getApi() {
       alert('An error has occured.');
     });
 }
-
+// calling getApi function
+getApi();
 
 // gets login values from login form
 let loginInfo = JSON.parse(localStorage.getItem('logininfo'));
@@ -58,7 +57,7 @@ function checkLogin() {
   })
   if (match.length) {
     getUserInfo();
-    getTeams()
+    getTeams();
     document.location.href = './homepage.html'
   } else {
     $(loginBtn).popover({
@@ -75,7 +74,7 @@ function getUserInfo() {
     password: $('#login-password').val(),
   }
   localStorage.setItem('userData', JSON.stringify(userData))
-  return userData;
+  // checkLogin();
 }
 
 // gets teams associated with login user to populate homepage
@@ -89,9 +88,6 @@ function getTeams() {
   }
   // getUserInfo();
 }
-
-// calling getApi function
-getApi();
 
 // logout button
 $('#logout').on('click', function (e) {
