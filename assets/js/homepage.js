@@ -75,12 +75,11 @@ function scheduleAPI() {
       }
     })
 }
-// this function will be used to populate the users favorite teams
+
 let favTeams = [];
 function populateFavTeams() {
-  // let user = ['teams']
 
-// this function is getting the faocirte teams from the users selected teams in the info saved from the local storage.
+// this function is getting the favorite teams from the users selected teams in the info saved from the local storage.
     let userTeamsLs = JSON.parse(localStorage.getItem('userTeams'));
     let nbaTeams = JSON.parse(localStorage.getItem('NBA Teams'));
     let userTeams = userTeamsLs[0];
@@ -103,7 +102,7 @@ function populateFavTeams() {
     console.log(favTeams);
   }
 
-  
+  // this function will be used to populate the users favorite teams
   function createFavTeams(){
     const teamDisplay = $('.row-content');
     for(let i = 0; i < favTeams.length; i++){
