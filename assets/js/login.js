@@ -11,10 +11,10 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 }
 
+// gets infor from the API to diplay the team logos and names and appends to html
 function teamChoices() {
   let savedData = readNBAFromStorage();
   let nbaTeams = savedData.sports[0].leagues[0].teams;
-  // console.log(nbaTeams)
   // console.log(nbaTeams)
   for (i = 0; i < nbaTeams.length; i++) {
     let divEl = $('<div>')
@@ -24,6 +24,7 @@ function teamChoices() {
     const teamSect = $('.teams');
     const mainDiv = $('<label>');
     mainDiv.addClass('team-logo text-center form-check-label').text(nbaTeams[i].team.displayName);
+
     const img = $('<img>');
     img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`).attr('style', 'width:30px;height:30px;')
 
@@ -37,7 +38,6 @@ let chosenteams = []
 
 if (!localStorage.getItem("teams")) localStorage.setItem("teams", JSON.stringify([]));
 
-teamChoices();
 //global variables for login information
 const submitBtn = document.querySelector('#submit');
 const username = document.getElementById('username');
@@ -112,5 +112,6 @@ form.addEventListener('submit', function (event) {
     console.log(found)
   }
 })
+teamChoices();
 // Every time the page loads, we want to get all users with login credentials
 readcred();

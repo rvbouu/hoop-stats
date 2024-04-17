@@ -19,9 +19,6 @@ Kyle Butcher
 Joel Hansen
 
 ## Badges and Acknowledgements
-
-Thank you to our instructor Gary and TA Katy for assisting us when needed during this project!
-
 [![Bootstrap]( https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com)
 
 [![JQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)](https://jquery.com)
