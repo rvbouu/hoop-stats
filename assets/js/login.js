@@ -11,11 +11,33 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 }
 
+function teamChoices() {
+  let savedData = readNBAFromStorage();
+  let nbaTeams = savedData.sports[0].leagues[0].teams;
+  console.log(nbaTeams)
+  // console.log(nbaTeams)
+  for (i = 0; i < nbaTeams.length; i++) {
+    let divEl = $('<div>')
+    divEl.addClass('m-4')
+    let input = $(`<input data-teamname="${nbaTeams[i].team.displayName}">`)
+    input.attr('type', 'checkbox').addClass('form-check-input')
+    const teamSect = $('.teams');
+    const mainDiv = $('<label>');
+    mainDiv.addClass('team-logo text-center form-check-label').text(nbaTeams[i].team.displayName);
+    const img = $('<img>');
+    img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`).attr('style', 'width:30px;height:30px;')
+
+    divEl.append(input, img, mainDiv);
+    teamSect.append(divEl);
+  }
+}
+
 //makes chosen teams into an array and saves them to local storage
 let chosenteams = []
 
 if (!localStorage.getItem("teams")) localStorage.setItem("teams", JSON.stringify([]));
 
+teamChoices();
 //global variables for login information
 const submitBtn = document.querySelector('#submit');
 const username = document.getElementById('username');
