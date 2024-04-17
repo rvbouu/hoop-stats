@@ -1,34 +1,57 @@
+// JS file for what are the odds page
+// taking two teams and compares overall win percent
+// highlights winner in green
+// shows both teams overall stats on sides
+// at top: images for all teams that are drag/droppable
+// reset button to clear out comparison square
+// requestURL for individual teams :: http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team abbr}
+
 const modal = $("#modal");
-const modalError = $('#modal-error')
 const teamsSect = $('#teams');
 const teamOneStats = $('.team-one');
 const teamTwoStats = $('.team-two');
 const winner = $('#winner');
 const compare1 = $('#compare-team1');
 const compare2 = $('#compare-team2');
-const teamsCompare = [];
+
 let teams;
+let league = 'NBA';
+const teamsBeingCompared = [];
 
-// Modal functions
-function showModal(content) {
-  modal.append(content).css("display", "block")
+const apis = [
+  {
+    league: 'NBA',
+    getTeams: function(abbreviation){
+      return `http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${abbreviation}`
+    }
+  }
+]
+
+function load(){
+  teams = readTeamsFromStorage();
+  renderAllLogos()
+  showModal()
 }
 
-function hideModal() {
-  modal.html("").css("display", "none")
+
+function renderAllLogos(){
+  teams.forEach( team => {
+    const id = team.id 
+    teamsSect.append( createTeamCard(id) )
+  })
 }
+
 
 // gets NBA data from localStorage
-function readNBAFromStorage() {
-  let stringData = localStorage.getItem('NBA');
-  let nba = JSON.parse(stringData) || [];
-  return nba;
+function readSportsTeams(league) {
+  let stringData = localStorage.getItem(league);
+  let data = JSON.parse(stringData) || [];
+  return data;
 }
 
 // saves NBA data to localStorage
-function saveNBAToStorage(nba) {
-  let savedNBA = JSON.stringify(nba);
-  localStorage.setItem('NBA', savedNBA);
+function saveTeamsToStorage(data, key = league) {
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
 // gets teamArray data from localStorage
@@ -44,19 +67,27 @@ function saveTeamsToStorage(teamArray) {
   localStorage.setItem('teamArray', savedTeams);
 }
 
+function getStatsForTeam(teamId){
+  return teams.find( team => team.id === teamId )
+}
+
 // uses data from sript.js fetch to get individual team stats and saves them to teamArray
 function getTeamApi() {
   let teamArray = [];
-  let savedData = readNBAFromStorage();
+  let savedData = readSportsTeams(league);
   // targets team array with NBA object in localStorage
   let teams = savedData.sports[0].leagues[0].teams;
   // saves teams array to localStorage under NBA Teams
-  localStorage.setItem('NBA Teams', JSON.stringify(teams))
+  localStorage.setItem(`${league} Teams`, JSON.stringify(teams))
   // console.log(teams)
   for (let i = 0; i < teams.length; i++) {
     // fetching data for individual teams
-    const requestURL = `http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${teams[i].team.abbreviation}`;
-    fetch(requestURL)
+    const apiObj = apis.find( api => api.league === league )
+    const reqUrl = apiObj.getTeams(teams[i].team.abbreviation)
+
+
+    // const requestURL = `http://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${teams[i].team.abbreviation}`;
+    fetch(reqUrl)
       .then(function (response) {
         return response.json();
       })
@@ -82,36 +113,26 @@ function getTeamApi() {
   }
 }
 
-// renders team logos at the top of the page
-function renderAllLogos() {
-  teams.forEach(team => {
-    const id = team.id
-    teamsSect.append(createTeamCard(id))
-  })
-}
-
-// gets the id for dragged teams
-function getStatsForTeam(teamId) {
-  return teams.find(team => team.id === teamId)
-}
 // creates team logo cards and returns it
 function createTeamCard(teamId) {
-  const team = getStatsForTeam(teamId)
+  const teamObj = getStatsForTeam(teamId)
+
   const teamCard = $('<div>');
-  teamCard.addClass('team-logo col text-center draggable').attr('data-win-id', team.id);
+  teamCard.addClass('team-logo col text-center draggable').attr('data-win-id', teamObj.id);
 
   const pTag = $('<p>');
-  pTag.text(team.name).addClass('fw-bold text-center').attr('id', 'team-name');
+  pTag.text(teamObj.name).addClass('fw-bold text-center').attr('id', 'team-name');
 
   const img = $('<img>');
-  img.attr('src', team.logo).attr('alt', `${team.name} logo`).addClass('logos');
+  img.attr('src', teamObj.logo).attr('alt', `${teamObj.name} logo`).addClass('logos');
   teamCard.append(img, pTag);
   return teamCard;
 }
 
 // creates stats to be appended to asides
 function createStats(teamId) {
-  const team = getStatsForTeam(teamId);
+  const team = getStatsForTeam(teamId)
+
   const stats = $('<div>');
   stats.addClass('team-stats col text-center');
 
@@ -131,12 +152,22 @@ function createStats(teamId) {
   return stats;
 }
 
+function showModal(content = $("<p>").text("This is a test")){
+  modal.append(content).css("display", "block")
+}
+
+function hideModal(){
+  modal.html("").css("display", "none")
+}
+
 // renders team logo cards and makes them draggable
 function renderTeam() {
   // makes cards draggable
   $('.draggable').draggable({
     opacity: 0.7,
     zIndex: 100,
+
+
     // creates clone of card being dragged (visual only)
     helper: function (e) {
       // checks whether target of drag is card itself or child element. If card itself, clone it, else find parent card that is draggable and clone that.
@@ -151,9 +182,8 @@ function renderTeam() {
   });
 }
 
-// updates the display depending on where card is dragged and displays stats
-function updateTeamDisplay(teamId) {
-  if (teamsCompare.length === 1) {
+function updateTeamDisplay(teamId, draggedFromArea){
+  if( teamsBeingCompared.length === 1 ){
     teamOneStats.append(createStats(teamId))
     compare1.append(createTeamCard(teamId))
   } else {
@@ -166,20 +196,20 @@ function updateTeamDisplay(teamId) {
 // handles drop of cards
 function handleDrop(event, ui) {
   const winId = ui.draggable[0].dataset.winId;
-  if (teamsCompare.find(team => team === winId)) return false;
+  if( teamsBeingCompared.find( team => team === winId) ) return false;
 
-  if (teamsCompare.length < 2) {
-    teamsCompare.push(winId);
-    updateTeamDisplay(winId)
-  } else {
-    showModal()
-  }
+  console.log("drop");
+
+  if( teamsBeingCompared.length < 2 ){
+    teamsBeingCompared.push(winId)
+    updateTeamDisplay(winId, event.target.id)
+  } 
+  // renderTeam();
 }
 
-// compares the teams that are dragged into compare boxes
-function compareTeams() {
-  const team1 = getStatsForTeam(teamsCompare[0]);
-  const team2 = getStatsForTeam(teamsCompare[1]);
+function compareTeams(){
+  const team1 = getStatsForTeam(teamsBeingCompared[0])
+  const team2 = getStatsForTeam(teamsBeingCompared[1])
 
   // if statement to compare and show who would win between the two teams being compared
   if (team1.winPerc < team2.winPerc) {
@@ -189,14 +219,9 @@ function compareTeams() {
   } else if (team1.winPerc == team2.winPerc) {
     winner.text(`It'd be a tie.`);
   }
-  // console.log('drop');
-}
+  console.log('drop');
+  // saveTeamsToStorage(teams);
 
-// load function that will render logos to screen and assign readTeamsFromStorage to teams variable
-function load() {
-  teams = readTeamsFromStorage();
-  getTeamApi();
-  renderAllLogos();
 }
 
 // reset button
@@ -204,15 +229,11 @@ $('#reset').on('click', function (e) {
   document.location.href = './odds.html';
 });
 
-// error message button
-modalError.on('click', function (e) {
-  e.preventDefault();
-  document.location.href = './odds.html';
-  hideModal();
-});
-
 // calls functions right when the page is ready and makes lanes droppable
 $(document).ready(function () {
+  // renders tasks if there is any
+  getTeamApi();
+
   // makes lanes droppable
   $('.lane').droppable({
     accept: '.draggable',
