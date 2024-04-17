@@ -15,6 +15,26 @@
   font-weight: 650;
 }
 
+/* error modal */
+#modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  height: 90px;
+  width: 300px;
+  background-color: white;
+  border: 2px solid black;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 20px;
+  color: var(--blueblack);
+}
+
 /* reset button */
 #reset{
   background-color: var(--orange);
@@ -109,6 +129,7 @@ main{
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  color:#00be6f;
 }
 
 /* stats area for dragged teams */
@@ -238,7 +259,6 @@ main{
 
   #winner{
     font-size: 15px;
-    color: #00be6f;
   }
 
   .team-one, .team-two{

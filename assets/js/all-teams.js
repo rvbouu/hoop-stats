@@ -29,7 +29,6 @@ function allTeams() {  //this function posts all the NBA teams with their names 
     img.attr('src', object.team.logos[0].href).attr('alt', `${object.team.displayName} logo`).addClass('logos').appendTo(aTag);
     allTeams.append(div);
   }
-
   return allTeams;
 }
 

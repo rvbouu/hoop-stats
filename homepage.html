@@ -4,49 +4,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hoop Stats | Home</title>
   <!--Bootstrap link-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <!--jquery UI link-->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <!-- local stylesheets -->
   <link rel="stylesheet" href="./assets/css/homepage.css" />
   <link rel="stylesheet" href="./assets/css/style.css" />
+  <!-- icon in tab -->
+  <link rel="icon" href="./assets/images/favicon.ico" />
+  <title>Hoop Stats | Home</title>
 </head>
 
 <body>
   <!-- class of top-page is for header information -->
   <header>
-    <h1><img src="./assets/images/hoop-stats-logo.png" alt="Hoop Stats Logo" id="hoopstats-logo" /></h1>
+    <h1>
+      <img src="./assets/images/hoop-stats-logo.png" alt="Hoop Stats Logo" id="hoopstats-logo" />
+    </h1>
     <nav class="navbar">
       <a href="./all-teams.html">All Teams</a>
       <a href="./odds.html">Odds</a>
       <a href="./about.html">About</a>
-      <button id="logout" type="submit">Logout</button>
+      <button id="logout" type="submit"> Logout </button>
     </nav>
   </header>
-  <!-- creating 4 div containers with team  for place holders for javascript code-->
-  <h2 class="my-teams">Your teams</h2>
-  <div class="rando">
+  <h2 class="my-teams">Your Teams</h2>
+  <section class="rando">
     <main class="row-content">
+      <!-- where favorite teams are dynamically generated -->
     </main>
-    <aside class="sidebar"> Upcoming Games:
+    <aside class="sidebar">
+      Upcoming Games:
+      <!-- where upcoming game cards are dynamically generated.  -->
     </aside>
-  </div>
-  <!-- add copyright symbol and updated rockband name -->
+  </section>
   <footer>
     <h4>&copy; A Rage Against Github Production &#127936;</h4>
   </footer>
-
+  <!-- bootstrap script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-  <!--jquery link-->
+  <!--jquery script-->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <!--jquery UI link-->
+  <!--jquery UI script-->
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="./assets/js/homepage.js"></script>
+  <!-- local scripts -->
+  <script type="text/javascript" src="./assets/js/login.js"></script>
   <script type="text/javascript" src="./assets/js/script.js"></script>
+  <script type="text/javascript" src="./assets/js/homepage.js"></script>
   <script type="text/javascript" src="./assets/js/odds.js"></script>
 </body>
 
