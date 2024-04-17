@@ -30,7 +30,6 @@ const apis = [
 function load(){
   teams = readTeamsFromStorage();
   renderAllLogos()
-  showModal()
 }
 
 
@@ -152,7 +151,7 @@ function createStats(teamId) {
   return stats;
 }
 
-function showModal(content = $("<p>").text("This is a test")){
+function showModal(content){
   modal.append(content).css("display", "block")
 }
 
