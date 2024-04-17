@@ -1,25 +1,4 @@
 
-
-// gets NBA data from localStorage
-function readNBAFromStorage() {
-  let stringData = localStorage.getItem('NBA');
-  let nba = JSON.parse(stringData) || [];
-  return nba;
-}
-
-// saves NBA data to localStorage
-function saveNBAToStorage(nba) {
-  let savedNBA = JSON.stringify(nba);
-  localStorage.setItem('NBA', savedNBA);
-}
-
-
-
-
-
-
-
-
 // gets NBA data from api and saves it to localStorage
 function getApi() {
   // URL where we're requesting data from - ESPN NBA
@@ -44,8 +23,22 @@ function getApi() {
       console.log(error);
       alert('An error has occured.');
     });
+    
 }
 getApi();
+
+// gets NBA data from localStorage
+function readNBAFromStorage() {
+  let stringData = localStorage.getItem('NBA');
+  let nba = JSON.parse(stringData) || [];
+  return nba;
+}
+
+// saves NBA data to localStorage
+function saveNBAToStorage(nba) {
+  let savedNBA = JSON.stringify(nba);
+  localStorage.setItem('NBA', savedNBA);
+}
 
 let loginInfo = JSON.parse(localStorage.getItem('logininfo'));
 console.log(loginInfo);
@@ -91,12 +84,16 @@ function getTeams(){
   }
 }
 
+$('#lgpage').on('click', function(e){
+  e.preventDefault();
+  window.location.replace('./login.html')
+})
 
 // logout button
 $('#logout').on('click', function (e) {
   e.preventDefault();
   console.log('logout')
-  window.location.replace('./index.html');
+  window.location.replace('./login.html');
 });
 
 loginBtn.on('click', function (e) {
