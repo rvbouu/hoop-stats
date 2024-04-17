@@ -11,28 +11,6 @@ function saveNBAToStorage(nba) {
   localStorage.setItem('NBA', savedNBA);
 }
 
-// gets infor from the API to diplay the team logos and names and appends to html
-function teamChoices() {
-  let savedData = readNBAFromStorage();
-  let nbaTeams = savedData.sports[0].leagues[0].teams;
-  // console.log(nbaTeams)
-  for (i = 0; i < nbaTeams.length; i++) {
-    let divEl = $('<div>')
-    divEl.addClass('m-4')
-    let input = $(`<input data-teamname="${nbaTeams[i].team.displayName}">`)
-    input.attr('type', 'checkbox').addClass('form-check-input')
-    const teamSect = $('.teams');
-    const mainDiv = $('<label>');
-    mainDiv.addClass('team-logo text-center form-check-label').text(nbaTeams[i].team.displayName);
-
-    const img = $('<img>');
-    img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`).attr('style', 'width:30px;height:30px;')
-
-    divEl.append(input, img, mainDiv);
-    teamSect.append(divEl);
-  }
-}
-
 //makes chosen teams into an array and saves them to local storage
 let chosenteams = []
 

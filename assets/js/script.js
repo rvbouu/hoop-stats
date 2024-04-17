@@ -1,4 +1,16 @@
+let nbaTeams;
+// gets NBA data from localStorage
+function readNBAFromStorage() {
+  let stringData = localStorage.getItem('NBA');
+  let nba = JSON.parse(stringData) || [];
+  return nba;
+}
 
+// saves NBA data to localStorage
+function saveNBAToStorage(nba) {
+  let savedNBA = JSON.stringify(nba);
+  localStorage.setItem('NBA', savedNBA);
+}
 // gets NBA data from api and saves it to localStorage
 function getApi() {
   // URL where we're requesting data from - ESPN NBA
@@ -13,7 +25,26 @@ function getApi() {
     // saving converted data to localStorage 
     .then(data => {
       // console.log(data);
-      localStorage.setItem('NBA', JSON.stringify(data))
+      nbaTeams = data.sports[0].leagues[0].teams;
+      localStorage.setItem('NBA', JSON.stringify(data));
+
+      // gets infor from the API to diplay the team logos and names and appends to html
+
+      for (i = 0; i < nbaTeams.length; i++) {
+        let divEl = $('<div>')
+        divEl.addClass('m-4')
+        let input = $(`<input data-teamname="${nbaTeams[i].team.displayName}">`)
+        input.attr('type', 'checkbox').addClass('form-check-input')
+        const teamSect = $('.teams');
+        const mainDiv = $('<label>');
+        mainDiv.addClass('team-logo text-center form-check-label').text(nbaTeams[i].team.displayName);
+    
+        const img = $('<img>');
+        img.attr('src', nbaTeams[i].team.logos[0].href).attr('alt', `${nbaTeams[i].team.displayName} logo`).attr('style', 'width:30px;height:30px;')
+    
+        divEl.append(input, img, mainDiv);
+        teamSect.append(divEl);
+      }
     })
     // catches error if occurs and alerts user that something when wrong
     .catch(function (error) {
@@ -22,18 +53,6 @@ function getApi() {
     });
 }
 
-// gets NBA data from localStorage
-function readNBAFromStorage() {
-  let stringData = localStorage.getItem('NBA');
-  let nba = JSON.parse(stringData) || [];
-  return nba;
-}
-
-// saves NBA data to localStorage
-function saveNBAToStorage(nba) {
-  let savedNBA = JSON.stringify(nba);
-  localStorage.setItem('NBA', savedNBA);
-}
 
 // gets login values from login form
 let loginInfo = JSON.parse(localStorage.getItem('logininfo'));
@@ -74,7 +93,7 @@ function getUserInfo() {
     password: $('#login-password').val(),
   }
   localStorage.setItem('userData', JSON.stringify(userData))
-  // checkLogin();
+  return userData;
 }
 
 // gets teams associated with login user to populate homepage
