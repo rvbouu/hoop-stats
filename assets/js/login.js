@@ -37,32 +37,33 @@ function teamChoices() {
 }
 
 
-//makes chosen teams into an array and saves them to local storage
-let chosenteams = []
-
-if (!localStorage.getItem("teams")) localStorage.setItem("teams", JSON.stringify([]));
-
-
-
-
-
-//global variables for login information
-const submitBtn = document.querySelector('#submit');
-const username = document.getElementById('username');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
-const form = document.getElementById('login')
-
-
-// global variable for all users who have login credentials
-let allUsers = []
-
-
-let btn = document.getElementById('myBtn')
-var span = document.getElementsByClassName("close")[0];
-
-//saving login info to local storage
-if (!localStorage.getItem("logininfo")) localStorage.setItem("logininfo", JSON.stringify([]));
+  //makes chosen teams into an array and saves them to local storage
+  let chosenteams = []
+  
+  if (!localStorage.getItem("teams")) localStorage.setItem("teams", JSON.stringify([]));
+  
+  
+  
+  teamChoices();
+  
+  //global variables for login information
+  const submitBtn = document.querySelector('#submit');
+  const username = document.getElementById('username');
+  const password = document.getElementById('password');
+  const password2 = document.getElementById('password2');
+  const form = document.getElementById('login')
+  
+  
+  
+  // global variable for all users who have login credentials
+  let allUsers = []
+  
+  
+  let btn = document.getElementById('myBtn')
+  var span = document.getElementsByClassName("close")[0];
+  
+  //saving login info to local storage
+  if (!localStorage.getItem("logininfo")) localStorage.setItem("logininfo", JSON.stringify([]));
 
 function readcred() {
   let stringdata = localStorage.getItem('logininfo')
@@ -106,23 +107,27 @@ form.addEventListener('submit', function (event) {
   localStorage.setItem('userTeams', JSON.stringify(userTeams));
 
 
-  //makes sure that all fields are properly filled in before redirecting to the home page
-
-  if (username.value == '' || password.value == '' || password2.value == '' || teams.vale == '') {
-    return alert('please fill all fields before continuing')
-  } else if (password.value != password2.value) {
-    return alert('Passwords do not match');
-  } else {
-    console.log("ok")
-    window.location.replace("./homepage.html");
-    saveNewUser(logins)
-
-    const found = allUsers.find(user => user.username === username.value && user.password === password.value && user.teams === teams.value)
-    console.log(found)
-  }
-
-
-})
-teamChoices();
-// Every time the page loads, we want to get all users with login credentials
-readcred();
+    //makes sure that all fields are properly filled in before redirecting to the home page
+  
+    if (username.value == '' || password.value == '' || password2.value == '') {
+      $(submitBtn).popover({
+        content: 'Please fill all fields before continuing'
+      });
+    } else if (password.value != password2.value) {
+      $(submitBtn).popover({
+        content: 'Passwords do not match'
+      });
+    } else {
+      console.log("ok")
+      window.location.replace("./homepage.html");
+      saveNewUser(logins)
+  
+      const found = allUsers.find(user => user.username === username.value && user.password === password.value && user.teams === teams.value)
+      console.log(found)
+    }
+  
+  
+  })
+  
+  // Every time the page loads, we want to get all users with login credentials
+  readcred();

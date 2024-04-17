@@ -75,12 +75,11 @@ function scheduleAPI() {
       }
     })
 }
-// this function will be used to populate the users favorite teams
+
 let favTeams = [];
 function populateFavTeams() {
-  // let user = ['teams']
 
-// this function is getting the faocirte teams from the users selected teams in the info saved from the local storage.
+// this function is getting the favorite teams from the users selected teams in the info saved from the local storage.
     let userTeamsLs = JSON.parse(localStorage.getItem('userTeams'));
     let nbaTeams = JSON.parse(localStorage.getItem('NBA Teams'));
     let userTeams = userTeamsLs[0];
@@ -103,7 +102,7 @@ function populateFavTeams() {
     console.log(favTeams);
   }
 
-  
+  // this function will be used to populate the users favorite teams
   function createFavTeams(){
     const teamDisplay = $('.row-content');
     for(let i = 0; i < favTeams.length; i++){
@@ -111,17 +110,19 @@ function populateFavTeams() {
       let web = $('<a>');
       web.attr('href', `${favTeams[i].web}`).appendTo(div);
       let img = $('<img>');
-      img.attr('src', `${favTeams[i].logo}`).attr('alt', `${favTeams[i].name} logo`).appendTo(web);
+      img.attr('src', `${favTeams[i].logo}`).attr('alt', `${favTeams[i].name} logo`).addClass('logo-team').appendTo(web);
       let h4 = $('<h4>');
-      h4.text(`${favTeams[i].name}`).appendTo(div);
+      h4.text(`${favTeams[i].name}`).addClass('team-name').appendTo(div);
       let roster = $('<a>');
-      roster.attr('href', `${favTeams[i].roster}`).text('Roster').appendTo(div);
+      roster.attr('href', `${favTeams[i].roster}`).text('Roster').addClass('info').appendTo(div);
       let schedule = $('<a>');
-      schedule.attr('href', `${favTeams[i].schedule}`).text('Schedule').appendTo(div);
+      schedule.attr('href', `${favTeams[i].schedule}`).text('Schedule').addClass('info').appendTo(div);
       div.appendTo(teamDisplay);
     }
 
   }
+
+  // calling the functions here 
 populateFavTeams();
 createFavTeams();
 scheduleAPI();

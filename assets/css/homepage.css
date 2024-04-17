@@ -16,29 +16,47 @@ body {
 }
 
 .team {
-  border: 3px solid white;
   height: 300px;
   width: 400px;
 }
 
 .row-content {
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
+.logo-team{
+  height: 300px;
+  width: 300px;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  font-size: large;
+  color: var(--silver);
+}
+
+.info:hover{
+  color: var(--orange);
+}
+/* was for lining up the boxes where we were kind of wanting the teams  */
 .section-1{
   display: flex;
   padding-top: 150px;
   justify-content: space-evenly;
 }
-
+/* for lining up the teams */
 .section2{
   display: flex;
   padding-top: 100px;
   justify-content: space-evenly;
 }
-
+/* this is for the scheduled games on the side */
 aside {
   text-align: center;
   font-size: 2rem;
@@ -48,7 +66,7 @@ aside {
   justify-content: space-evenly;
   width: 200px;
 }
-
+/* coloring the side bar column to match the sites themes */
 aside div {
   padding: 5px;
   /* border: 3px solid red; */
@@ -87,6 +105,11 @@ aside div {
 
 @media screen and (max-width: 900px) {
   .rando{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row-content{
     display: flex;
     flex-direction: column;
   }
